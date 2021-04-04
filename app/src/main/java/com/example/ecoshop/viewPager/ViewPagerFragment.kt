@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.ListFragment
 import com.example.ecoshop.R
 import com.example.ecoshop.databinding.FragmentViewPagerBinding
+import com.example.ecoshop.listProduct.ListProductFragment
 
 class ViewPagerFragment : Fragment() {
 
@@ -18,9 +19,9 @@ class ViewPagerFragment : Fragment() {
         val binding = FragmentViewPagerBinding.inflate(inflater)
         binding.lifecycleOwner = this
         val fragmentList = arrayListOf<Fragment>(
-                ListFragment(),
-                ListFragment(),
-                ListFragment()
+                ListProductFragment(),
+                ListProductFragment(),
+                ListProductFragment()
         )
         val viewPagerAdapter = ViewPagerAdapter(fragmentList,
                 requireActivity().supportFragmentManager,
