@@ -27,6 +27,23 @@ class ViewPagerFragment : Fragment() {
                 requireActivity().supportFragmentManager,
                 lifecycle)
         binding.viewPager.adapter = viewPagerAdapter
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.best_menu -> {
+                    binding.viewPager.currentItem = 0
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.popular_menu -> {
+                    binding.viewPager.currentItem = 1
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.new_menu -> {
+                    binding.viewPager.currentItem = 2
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
         return binding.root
     }
 }

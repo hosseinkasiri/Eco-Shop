@@ -1,5 +1,11 @@
 package com.example.ecoshop.listProduct
 
-class ListProductViewModel {
+import androidx.lifecycle.ViewModel
+
+class ListProductViewModel: ViewModel() {
+
+    init {
+
+    }
 
 }
