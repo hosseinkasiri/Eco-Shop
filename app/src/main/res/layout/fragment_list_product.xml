@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="listProductViewModel"
+            type="com.example.ecoshop.listProduct.ListProductViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
