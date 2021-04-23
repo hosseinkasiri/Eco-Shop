@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface ProductAPI {
     @GET("products")
-    fun getPropertiesAsync():
+    fun getPropertiesAsync(@Query("orderby") value: String):
             Deferred<List<Product>>
 }

@@ -24,8 +24,6 @@ class ListProductFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.listProductViewModel = viewModel
         val adapter = ListProductAdapter()
-        binding.listRecyclerView.adapter = adapter
-        binding.listRecyclerView.layoutManager = LinearLayoutManager(context)
         return binding.root
     }
 }

@@ -1,49 +1,61 @@
 package com.example.ecoshop.viewPager
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.example.ecoshop.R
 import com.example.ecoshop.databinding.FragmentViewPagerBinding
 import com.example.ecoshop.listProduct.ListProductFragment
 
 class ViewPagerFragment : Fragment() {
 
+    lateinit var viewPager: ViewPager2
+    lateinit var viewPagerAdapter: ViewPagerAdapter
+    lateinit var binding: FragmentViewPagerBinding
+    lateinit var fragmentList: ArrayList<Fragment>
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentViewPagerBinding.inflate(inflater)
+        binding = FragmentViewPagerBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        val fragmentList = arrayListOf<Fragment>(
+        viewPager = binding.viewPager
+        fragmentList = arrayListOf(
                 ListProductFragment(),
                 ListProductFragment(),
                 ListProductFragment()
         )
-        val viewPagerAdapter = ViewPagerAdapter(fragmentList,
+        viewPager.isUserInputEnabled = false
+        viewPagerAdapter = ViewPagerAdapter(fragmentList,
                 requireActivity().supportFragmentManager,
                 lifecycle)
-        binding.viewPager.adapter = viewPagerAdapter
+        viewPager.adapter = viewPagerAdapter
+        setViewPagerToBottomNavigation(binding)
+
+        return binding.root
+    }
+
+    private fun setViewPagerToBottomNavigation(binding: FragmentViewPagerBinding) {
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.best_menu -> {
-                    binding.viewPager.currentItem = 0
+                R.id.home_menu -> {
+                    viewPager.currentItem = 0
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.popular_menu -> {
-                    binding.viewPager.currentItem = 1
+                R.id.collections_menu -> {
+                    viewPager.currentItem = 1
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.new_menu -> {
-                    binding.viewPager.currentItem = 2
+                R.id.user_menu -> {
+                    viewPager.currentItem = 2
                     return@setOnNavigationItemSelectedListener true
                 }
             }
             false
         }
-        return binding.root
     }
 }
