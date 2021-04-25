@@ -1,4 +1,4 @@
-package com.example.ecoshop.listProduct
+package com.example.ecoshop.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

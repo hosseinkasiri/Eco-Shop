@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="list"
+            name="product"
             type="com.example.ecoshop.Product" />
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_margin="5dp">
 
         <ImageView
-            android:id="@+id/imageHorizontal"
+            android:id="@+id/imageItem"
             android:layout_width="80dp"
             android:layout_height="100dp"
             android:layout_marginTop="3dp"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nameHorizontal"
+            android:id="@+id/nameItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -33,11 +33,11 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageHorizontal"
+            app:layout_constraintTop_toBottomOf="@+id/imageItem"
             tools:text="گوشی مبایل سامسونگ مدل A21" />
 
         <TextView
-            android:id="@+id/priceHorizontal"
+            android:id="@+id/priceItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -46,11 +46,11 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameHorizontal"
+            app:layout_constraintTop_toBottomOf="@+id/nameItem"
             tools:text="تومان4,845,000" />
 
         <TextView
-            android:id="@+id/regularPriceHorizontal"
+            android:id="@+id/regularPriceItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -58,7 +58,7 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/priceHorizontal"
+            app:layout_constraintTop_toBottomOf="@+id/priceItem"
             tools:text="5,000,000" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

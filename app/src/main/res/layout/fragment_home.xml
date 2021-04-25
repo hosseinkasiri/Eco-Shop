@@ -6,7 +6,7 @@
     <data>
         <variable
             name="listProductViewModel"
-            type="com.example.ecoshop.listProduct.ListProductViewModel" />
+            type="com.example.ecoshop.home.HomeViewModel" />
     </data>
 
     <ScrollView

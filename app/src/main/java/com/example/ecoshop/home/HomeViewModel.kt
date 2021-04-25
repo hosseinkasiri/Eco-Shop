@@ -1,4 +1,4 @@
-package com.example.ecoshop.listProduct
+package com.example.ecoshop.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,7 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class ListProductViewModel: ViewModel() {
+class HomeViewModel: ViewModel() {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)

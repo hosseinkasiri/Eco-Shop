@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ecoshop.R
 import com.example.ecoshop.databinding.FragmentViewPagerBinding
-import com.example.ecoshop.listProduct.ListProductFragment
+import com.example.ecoshop.home.HomeFragment
 
 class ViewPagerFragment : Fragment() {
 
@@ -25,9 +25,9 @@ class ViewPagerFragment : Fragment() {
         binding.lifecycleOwner = this
         viewPager = binding.viewPager
         fragmentList = arrayListOf(
-                ListProductFragment(),
-                ListProductFragment(),
-                ListProductFragment()
+                HomeFragment(),
+                HomeFragment(),
+                HomeFragment()
         )
         viewPager.isUserInputEnabled = false
         viewPagerAdapter = ViewPagerAdapter(fragmentList,
