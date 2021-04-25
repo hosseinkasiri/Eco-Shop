@@ -7,12 +7,17 @@
         <variable
             name="product"
             type="com.example.ecoshop.Product" />
+
+        <variable
+            name="onClickListener"
+            type="com.example.ecoshop.home.ListProductAdapter.ListItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:onClick="@{() -> onClickListener.onClick(product)}">
 
         <ImageView
             android:id="@+id/imageItem"
