@@ -5,19 +5,33 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.ecoshop.home.ListItemClickListener
 import com.example.ecoshop.home.ListProductAdapter
+import com.example.ecoshop.home.ListProductVerticalAdapter
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Product>){
-    val adapter = recyclerView.adapter as ListProductAdapter
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Product>?){
+    val adapter = ListProductAdapter(ListItemClickListener {
+
+    })
     adapter.submitList(data)
+    recyclerView.adapter = adapter
+}
+
+@BindingAdapter("verticalListData")
+fun bindVerticalRecycler(recyclerView: RecyclerView, data: List<Product>?){
+    val adapter = ListProductVerticalAdapter(ListItemClickListener {
+
+    })
+    adapter.submitList(data)
+    recyclerView.adapter = adapter
 }
 
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imageUrl: String){
     Glide.with(imageView.context)
-        .load(imageUrl)
-        .into(imageView)
+            .load(imageUrl)
+            .into(imageView)
 }
 
 @BindingAdapter("nameProduct")

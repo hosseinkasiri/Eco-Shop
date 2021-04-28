@@ -14,4 +14,5 @@ data class Product(val id: Int,
                    val salePrice: String,
                    @Json(name = "regular_price")
                    val regularPrice: String,
+                   val price: String,
                    val images: List<Image>)

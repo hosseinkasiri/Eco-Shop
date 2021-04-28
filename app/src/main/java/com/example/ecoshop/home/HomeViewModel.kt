@@ -33,9 +33,9 @@ class HomeViewModel: ViewModel() {
 
     private fun getProperties() {
         coroutineScope.launch {
-            val getPropertiesDeferred = repository.getProducts().getPropertiesAsync("date")
+            val getProperties = repository.getProducts().getPropertiesAsync("date")
             try {
-                val listResult = getPropertiesDeferred.await()
+                val listResult = getProperties.await()
                 _property.value = listResult
             }catch (e:Exception){
                 Log.d("ListProductViewModel", e.message + "")
