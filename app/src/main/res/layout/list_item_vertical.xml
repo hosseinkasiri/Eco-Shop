@@ -16,36 +16,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageVertical"
+            imageUrl="@{product.images.get(0).src}"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="8dp"
-            imageUrl="@{product.images.get(0).src}"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nameVertical"
+            nameProduct="@{product.name}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            nameProduct="@{product.name}"
-            app:layout_constraintStart_toEndOf="@+id/imageVertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageVertical"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="سلمسونگ گلکسی A51" />
 
         <TextView
             android:id="@+id/priceVertical"
+            regularPriceProduct="@{product.regularPrice}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            regularPriceProduct="@{product.regularPrice}"
-            app:layout_constraintStart_toStartOf="@+id/nameVertical"
+            app:layout_constraintEnd_toEndOf="@+id/nameVertical"
             app:layout_constraintTop_toBottomOf="@+id/nameVertical"
             tools:text="5,000,000" />
     </androidx.constraintlayout.widget.ConstraintLayout>

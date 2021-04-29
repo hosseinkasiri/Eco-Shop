@@ -8,4 +8,10 @@
     <string name="home">خانه</string>
     <string name="collections">دسته بندی ها</string>
     <string name="user">پروفایل</string>
+    <string name="description">مشخصات</string>
+    <string name="averageRating">. میانگین امتیاز :</string>
+    <string name="ratingCount">. تعداد رای :</string>
+    <string name="shortDescription">. شرح :</string>
+    <string name="weight">. وزن :</string>
+    <string name="status">ویژگی های محصول</string>
 </resources>

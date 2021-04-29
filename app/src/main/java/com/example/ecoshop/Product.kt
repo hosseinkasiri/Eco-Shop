@@ -1,7 +1,7 @@
 package com.example.ecoshop
 
 import com.squareup.moshi.Json
-import java.net.URL
+import java.io.Serializable
 
 data class Product(val id: Int,
                    val name: String,
@@ -15,4 +15,9 @@ data class Product(val id: Int,
                    @Json(name = "regular_price")
                    val regularPrice: String,
                    val price: String,
-                   val images: List<Image>)
+                   val weight: String,
+                   @Json(name = "average_rating")
+                   val averageRating: String,
+                   @Json(name = "rating_count")
+                   val ratingCount: Int,
+                   val images: List<Image>): Serializable

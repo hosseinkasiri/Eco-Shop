@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
+                app:reverseLayout="true"
                 listData="@{listProductViewModel.property}"
                 android:layout_margin="10dp"/>
 
@@ -49,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                app:reverseLayout="true"
                 listData="@{listProductViewModel.property}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_margin="10dp"/>
