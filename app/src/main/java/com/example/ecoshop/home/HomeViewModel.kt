@@ -13,6 +13,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+enum class ApiStatus { LOADING, ERROR, DONE }
+
 class HomeViewModel: ViewModel() {
 
     private val viewModelJob = Job()
@@ -21,6 +23,9 @@ class HomeViewModel: ViewModel() {
     private val _property = MutableLiveData<List<Product>>()
     val property: LiveData<List<Product>>
         get() = _property
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
 
     init {
         getProperties()
@@ -35,10 +40,13 @@ class HomeViewModel: ViewModel() {
         coroutineScope.launch {
             val getProperties = repository.getProducts().getPropertiesAsync("date")
             try {
+                _status.value = ApiStatus.LOADING
                 val listResult = getProperties.await()
+                _status.value = ApiStatus.DONE
                 _property.value = listResult
             }catch (e:Exception){
-                Log.d("ListProductViewModel", e.message + "")
+                Log.d("homeViewModel", e.message + "")
+                _status.value = ApiStatus.ERROR
                 _property.value = ArrayList()
             }
         }

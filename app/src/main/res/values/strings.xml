@@ -14,4 +14,7 @@
     <string name="shortDescription">. شرح :</string>
     <string name="weight">. وزن :</string>
     <string name="status">ویژگی های محصول</string>
+    <string name="bestProducts">بهترین ها</string>
+    <string name="popularProducts">محبوب ترین ها</string>
+    <string name="newProducts">جدید ترین ها</string>
 </resources>

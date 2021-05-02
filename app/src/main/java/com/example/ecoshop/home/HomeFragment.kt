@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
-        binding.listProductViewModel = viewModel
+        binding.homeViewModel = viewModel
         return binding.root
     }
 }

@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="listProductViewModel"
+            name="homeViewModel"
             type="com.example.ecoshop.home.HomeViewModel" />
     </data>
 
@@ -13,66 +13,112 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/bestText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="بهترین محصولات"
                 android:layout_margin="5dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/bestProducts"
+                android:visibility="gone"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+                visibilityTextView="@{homeViewModel.status}"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bestProductRecycler"
+                listData="@{homeViewModel.property}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_margin="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
-                app:reverseLayout="true"
-                listData="@{listProductViewModel.property}"
-                android:layout_margin="10dp"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bestText"
+                app:reverseLayout="true" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/popularText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="پر بازدید ترین محصولات"
                 android:layout_margin="5dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/popularProducts"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:visibility="gone"
+                visibilityTextView="@{homeViewModel.status}"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bestProductRecycler" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popularProductRecycler"
+                listData="@{homeViewModel.property}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
-                app:reverseLayout="true"
-                listData="@{listProductViewModel.property}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_margin="10dp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popularText"
+                app:reverseLayout="true" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/newText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="جدید ترین محصولات"
                 android:layout_margin="5dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/newProducts"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:visibility="gone"
+                visibilityTextView="@{homeViewModel.status}"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popularProductRecycler" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newProductRecycler"
+                verticalListData="@{homeViewModel.property}"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="vertical"
                 android:textAlignment="center"
-                android:layout_margin="10dp"
-                verticalListData="@{listProductViewModel.property}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newText" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/status_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="100dp"
+                app:ApiStatus="@{homeViewModel.status}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
