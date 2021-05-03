@@ -13,18 +13,14 @@ import com.example.ecoshop.home.ListProductVerticalAdapter
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Product>?){
-    val adapter = ListProductAdapter(ListItemClickListener {
-
-    })
+    val adapter = recyclerView.adapter as ListProductAdapter
     adapter.submitList(data)
     recyclerView.adapter = adapter
 }
 
 @BindingAdapter("verticalListData")
 fun bindVerticalRecycler(recyclerView: RecyclerView, data: List<Product>?){
-    val adapter = ListProductVerticalAdapter(ListItemClickListener {
-
-    })
+    val adapter = recyclerView.adapter as ListProductVerticalAdapter
     adapter.submitList(data)
     recyclerView.adapter = adapter
 }

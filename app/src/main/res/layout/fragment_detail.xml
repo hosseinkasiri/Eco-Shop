@@ -34,6 +34,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:textStyle="bold|italic"
+                setTextTextView="@{detailViewModel.selectedProduct.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ImageRecyclerView"
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textStyle="bold|italic"
+                setTextTextView="@{detailViewModel.selectedProduct.price}"
                 app:layout_constraintEnd_toEndOf="@id/nameDetail"
                 app:layout_constraintTop_toBottomOf="@+id/nameDetail"
                 tools:text="5,000,000 تومان" />
@@ -63,6 +65,7 @@
                     android:textColor="@color/regularPriceColor"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
+                    setTextTextView="@{detailViewModel.selectedProduct.regularPrice}"
                     tools:text="5,500,000" />
 
                 <View
@@ -168,6 +171,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                setTextTextView="@{detailViewModel.selectedProduct.description}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
@@ -180,6 +184,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                setTextTextView="@{detailViewModel.selectedProduct.weight}"
                 app:layout_constraintEnd_toStartOf="@+id/weight"
                 app:layout_constraintTop_toBottomOf="@+id/propertyDetail" />
 
@@ -190,6 +195,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                setTextTextView="@{detailViewModel.selectedProduct.shortDescription}"
                 app:layout_constraintEnd_toStartOf="@+id/shortDescription"
                 app:layout_constraintTop_toTopOf="@+id/shortDescription" />
 
@@ -200,6 +206,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                setTextTextView="@{Integer.toString(detailViewModel.selectedProduct.ratingCount)}"
                 app:layout_constraintEnd_toStartOf="@+id/ratingCount"
                 app:layout_constraintTop_toTopOf="@+id/ratingCount" />
 
@@ -210,6 +217,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                setTextTextView="@{detailViewModel.selectedProduct.averageRating}"
                 app:layout_constraintEnd_toStartOf="@+id/averageRating"
                 app:layout_constraintTop_toTopOf="@+id/averageRating" />
 

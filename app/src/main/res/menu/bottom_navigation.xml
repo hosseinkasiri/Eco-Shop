@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/user_menu"
+        android:id="@+id/user"
         android:icon="@drawable/ic_action_user"
         android:title="@string/user"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/collections_menu"
+        android:id="@+id/grouping"
         android:icon="@drawable/ic_action_collection"
         android:title="@string/collections"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/home_menu"
+        android:id="@+id/home"
         android:icon="@drawable/ic_action_home"
         android:title="@string/home"
         app:showAsAction="ifRoom" />

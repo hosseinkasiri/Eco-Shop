@@ -3,31 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/viewPagerFragment">
-
+    app:startDestination="@id/home">
     <fragment
-        android:id="@+id/viewPagerFragment"
-        android:name="com.example.ecoshop.viewPager.ViewPagerFragment"
-        android:label="ViewPagerFragment" />
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.ecoshop.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_viewPagerFragment"
-            app:destination="@id/viewPagerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/home"
         android:name="com.example.ecoshop.home.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_home_to_detail"
+            app:destination="@id/detail" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
+        android:id="@+id/user"
+        android:name="com.example.ecoshop.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/grouping"
+        android:name="com.example.ecoshop.grouping.GroupingFragment"
+        android:label="fragment_grouping"
+        tools:layout="@layout/fragment_grouping" />
+    <fragment
+        android:id="@+id/detail"
         android:name="com.example.ecoshop.detail.DetailFragment"
         android:label="DetailFragment" >
         <argument

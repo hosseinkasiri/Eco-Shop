@@ -26,6 +26,9 @@ class HomeViewModel: ViewModel() {
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
+    private val _navigateToSelectedProperty = MutableLiveData<Product>()
+    val navigateToSelectedProperty: LiveData<Product>
+        get() = _navigateToSelectedProperty
 
     init {
         getProperties()
@@ -50,5 +53,13 @@ class HomeViewModel: ViewModel() {
                 _property.value = ArrayList()
             }
         }
+    }
+
+    fun displayPropertyDetails(product: Product) {
+        _navigateToSelectedProperty.value = product
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
     }
 }

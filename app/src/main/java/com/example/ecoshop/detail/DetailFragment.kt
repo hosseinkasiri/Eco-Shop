@@ -6,19 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.ecoshop.Product
 import com.example.ecoshop.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
-    private val viewModel: DetailViewModel by lazy {
-        ViewModelProvider(this).get(DetailViewModel::class.java)
-    }
+    private lateinit var product: Product
+    private lateinit var detailViewModelFactory: DetailViewModelFactory
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
         binding = FragmentDetailBinding.inflate(layoutInflater)
+        product = DetailFragmentArgs.fromBundle(requireArguments()).product
+        detailViewModelFactory = DetailViewModelFactory(product, (activity)!!.application)
+        viewModel = ViewModelProvider(this, detailViewModelFactory).get(DetailViewModel::class.java)
         binding.detailViewModel = viewModel
         return binding.root
     }

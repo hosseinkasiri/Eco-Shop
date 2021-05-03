@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ecoshop.Product
 import com.example.ecoshop.databinding.ListItemVerticalBinding
 
-class ListProductVerticalAdapter(val clickListener: ListItemClickListener):
+class ListProductVerticalAdapter(private val clickListener: ListItemClickListener):
         ListAdapter<Product, ListProductVerticalAdapter.ListVerticalHolder>(ListDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListVerticalHolder {
@@ -19,7 +19,7 @@ class ListProductVerticalAdapter(val clickListener: ListItemClickListener):
         holder.bind(clickListener, product)
     }
 
-    class ListVerticalHolder private constructor(val binding: ListItemVerticalBinding):
+    class ListVerticalHolder private constructor(private val binding: ListItemVerticalBinding):
             RecyclerView.ViewHolder(binding.root){
         fun bind(clickListener: ListItemClickListener, product: Product){
             binding.product = product

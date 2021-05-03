@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ecoshop.Product
 import com.example.ecoshop.databinding.ListItemViewBinding
 
-class ListProductAdapter(val clickListener: ListItemClickListener):
+class ListProductAdapter(private val clickListener: ListItemClickListener):
         ListAdapter<Product, ListProductAdapter.ListHolder>(ListDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
