@@ -10,7 +10,7 @@
 
         <variable
             name="onClickListener"
-            type="com.example.ecoshop.home.ListItemClickListener" />
+            type="com.example.ecoshop.utils.ListItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

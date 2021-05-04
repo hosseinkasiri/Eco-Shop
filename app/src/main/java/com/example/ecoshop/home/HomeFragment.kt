@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.ecoshop.customViews.ListProductAdapter
+import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.databinding.FragmentHomeBinding
+import com.example.ecoshop.utils.ListItemClickListener
 
 class HomeFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.ecoshop.home
+package com.example.ecoshop.utils
 
 import com.example.ecoshop.Product
 

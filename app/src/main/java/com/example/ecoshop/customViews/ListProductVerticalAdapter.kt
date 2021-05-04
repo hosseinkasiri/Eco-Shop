@@ -1,4 +1,4 @@
-package com.example.ecoshop.home
+package com.example.ecoshop.customViews
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecoshop.Product
 import com.example.ecoshop.databinding.ListItemVerticalBinding
+import com.example.ecoshop.utils.ListDiffCallBack
+import com.example.ecoshop.utils.ListItemClickListener
 
 class ListProductVerticalAdapter(private val clickListener: ListItemClickListener):
         ListAdapter<Product, ListProductVerticalAdapter.ListVerticalHolder>(ListDiffCallBack()) {

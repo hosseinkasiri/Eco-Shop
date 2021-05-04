@@ -1,4 +1,4 @@
-package com.example.ecoshop.home
+package com.example.ecoshop.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.ecoshop.Product

@@ -7,9 +7,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ecoshop.home.ApiStatus
-import com.example.ecoshop.home.ListItemClickListener
-import com.example.ecoshop.home.ListProductAdapter
-import com.example.ecoshop.home.ListProductVerticalAdapter
+import com.example.ecoshop.customViews.ListProductAdapter
+import com.example.ecoshop.customViews.ListProductVerticalAdapter
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Product>?){
