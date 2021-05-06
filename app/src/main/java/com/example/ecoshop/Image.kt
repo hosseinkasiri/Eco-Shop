@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class Image(val id: Int,
                  val src: String?,
-                 val imageName: String?): Parcelable {
+                 val name: String?): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString(),
@@ -15,7 +15,7 @@ data class Image(val id: Int,
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(src)
-        parcel.writeString(imageName)
+        parcel.writeString(name)
     }
 
     override fun describeContents(): Int {

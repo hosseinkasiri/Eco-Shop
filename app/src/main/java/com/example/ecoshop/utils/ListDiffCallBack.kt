@@ -3,12 +3,10 @@ package com.example.ecoshop.utils
 import androidx.recyclerview.widget.DiffUtil
 import com.example.ecoshop.Product
 
-class ListDiffCallBack: DiffUtil.ItemCallback<Product>(){
-    override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
-        return oldItem == newItem
-    }
+class ListDiffCallBack<T : Any>(
+        private val compareItems: (old: T, new: T) -> Boolean,
+        private val compareContents: (old: T, new: T) -> Boolean):
+        DiffUtil.ItemCallback<T>(){
+    override fun areItemsTheSame(old: T, new: T) = compareItems(old, new)
+    override fun areContentsTheSame(old: T, new: T) = compareContents(old, new)
 }

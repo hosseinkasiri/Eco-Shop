@@ -3,9 +3,11 @@ package com.example.ecoshop
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.ecoshop.customViews.ImageAdapter
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
@@ -21,6 +23,13 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Product>?){
 fun bindVerticalRecycler(recyclerView: RecyclerView, data: List<Product>?){
     val adapter = recyclerView.adapter as ListProductVerticalAdapter
     adapter.submitList(data)
+    recyclerView.adapter = adapter
+}
+
+@BindingAdapter("imageListData")
+fun bindImageRecycler(recyclerView: RecyclerView, images: List<Image>?){
+    val adapter = recyclerView.adapter as ImageAdapter
+    adapter.submitList(images)
     recyclerView.adapter = adapter
 }
 

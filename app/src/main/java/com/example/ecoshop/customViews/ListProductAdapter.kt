@@ -9,8 +9,10 @@ import com.example.ecoshop.databinding.ListItemViewBinding
 import com.example.ecoshop.utils.ListDiffCallBack
 import com.example.ecoshop.utils.ListItemClickListener
 
-class ListProductAdapter(private val clickListener: ListItemClickListener):
-        ListAdapter<Product, ListProductAdapter.ListHolder>(ListDiffCallBack()) {
+class ListProductAdapter(private val clickListener: ListItemClickListener<Product>,
+                         compareItems: (old: Product, new: Product) -> Boolean,
+                         compareContents: (old: Product, new: Product) -> Boolean):
+        ListAdapter<Product, ListProductAdapter.ListHolder>(ListDiffCallBack(compareItems, compareContents)) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
         return ListHolder.from(parent)
@@ -23,7 +25,7 @@ class ListProductAdapter(private val clickListener: ListItemClickListener):
 
     class ListHolder private constructor(private val binding: ListItemViewBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(clickListener: ListItemClickListener, product: Product){
+        fun bind(clickListener: ListItemClickListener<Product>, product: Product){
             binding.product = product
             binding.onClickListener = clickListener
             binding.executePendingBindings()

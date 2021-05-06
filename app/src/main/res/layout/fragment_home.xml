@@ -18,24 +18,54 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/toolbarCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#eeeeee"
+                    app:menu="@menu/toolbar"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imageRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                imageListData="@{homeViewModel.bestProperty.get(1).images}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarCardView" />
+
             <TextView
                 android:id="@+id/bestText"
+                visibilityTextView="@{homeViewModel.status}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/bestProducts"
-                android:visibility="gone"
                 android:textSize="18sp"
-                visibilityTextView="@{homeViewModel.status}"
                 android:textStyle="bold|italic"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/imageRecyclerView"
+                tools:layout_editor_absoluteY="40dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bestProductRecycler"
-                listData="@{homeViewModel.property}"
+                listData="@{homeViewModel.bestProperty}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -65,7 +95,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popularProductRecycler"
-                listData="@{homeViewModel.property}"
+                listData="@{homeViewModel.popularProperty}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -113,7 +143,6 @@
                 android:id="@+id/status_image"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="100dp"
                 app:ApiStatus="@{homeViewModel.status}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
