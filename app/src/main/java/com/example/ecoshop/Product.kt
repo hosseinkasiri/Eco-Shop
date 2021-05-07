@@ -2,6 +2,7 @@ package com.example.ecoshop
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.ecoshop.model.Image
 import com.squareup.moshi.Json
 
 data class Product(val id: Int,

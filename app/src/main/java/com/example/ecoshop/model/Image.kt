@@ -1,4 +1,4 @@
-package com.example.ecoshop
+package com.example.ecoshop.model
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ecoshop.Image
+import com.example.ecoshop.model.Image
 import com.example.ecoshop.databinding.ImageItemBinding
 import com.example.ecoshop.utils.ListDiffCallBack
 import com.example.ecoshop.utils.ListItemClickListener

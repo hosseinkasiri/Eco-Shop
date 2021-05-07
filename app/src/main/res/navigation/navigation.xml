@@ -19,9 +19,9 @@
         tools:layout="@layout/fragment_user" />
     <fragment
         android:id="@+id/grouping"
-        android:name="com.example.ecoshop.grouping.GroupingFragment"
+        android:name="com.example.ecoshop.categories.CategoriesFragment"
         android:label="fragment_grouping"
-        tools:layout="@layout/fragment_grouping" />
+        tools:layout="@layout/fragment_categories" />
     <fragment
         android:id="@+id/detail"
         android:name="com.example.ecoshop.detail.DetailFragment"
