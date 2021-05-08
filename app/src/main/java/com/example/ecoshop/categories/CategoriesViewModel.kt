@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.network.ProductRepository
 import com.example.ecoshop.network.ProductRepositoryImpl
@@ -21,6 +22,9 @@ class CategoriesViewModel: ViewModel() {
     private val _categories = MutableLiveData<List<ProductCategory>>()
     val categories: LiveData<List<ProductCategory>>
         get() = _categories
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
 
     init {
         getCategories()
@@ -30,10 +34,13 @@ class CategoriesViewModel: ViewModel() {
         coroutineScope.launch {
             val getPropertyDeferred = repository.getProducts().getCategoriesAsync()
             try {
+                _status.value = ApiStatus.LOADING
                 val listResult = getPropertyDeferred.await()
                 _categories.value = listResult
+                _status.value = ApiStatus.DONE
             }catch (e: Exception){
                 Log.d("CategoriesViewModel", e.message.toString())
+                _status.value = ApiStatus.ERROR
             }
         }
     }
