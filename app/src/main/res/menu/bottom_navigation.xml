@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/grouping"
+        android:id="@+id/categories"
         android:icon="@drawable/ic_action_collection"
         android:title="@string/collections"
         app:showAsAction="ifRoom" />

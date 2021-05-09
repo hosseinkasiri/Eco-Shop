@@ -30,9 +30,6 @@ class HomeViewModel: ViewModel() {
     private val _popularProperty = MutableLiveData<List<Product>>()
     val popularProperty: LiveData<List<Product>>
         get() = _popularProperty
-    private val _topProperty = MutableLiveData<MutableList<Image>>()
-    val topProperty: LiveData<MutableList<Image>>
-        get() = _topProperty
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
@@ -64,7 +61,7 @@ class HomeViewModel: ViewModel() {
                 _bestProperty.value = bestList
                 _popularProperty.value = popularList
             }catch (e:Exception){
-                Log.d("homeViewModel", e.message + "")
+                Log.d("homeViewModel", e.message.toString())
                 _status.value = ApiStatus.ERROR
                 _property.value = ArrayList()
             }
@@ -77,12 +74,5 @@ class HomeViewModel: ViewModel() {
 
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedProperty.value = null
-    }
-
-    private fun saveTopProperty(){
-        for (i in 0..4){
-            _bestProperty.value?.get(i)?.let { _topProperty.value!!.add(it.images!![0]) }
-        }
-        Log.d("kir", _topProperty.value!![0].src.toString())
     }
 }

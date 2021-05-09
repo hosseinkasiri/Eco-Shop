@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.ecoshop.customViews.CategoryAdapter
 import com.example.ecoshop.databinding.FragmentCategoriesBinding
 import com.example.ecoshop.utils.ListItemClickListener
@@ -28,10 +29,16 @@ class CategoriesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.categoriesRecycler.adapter = CategoryAdapter(ListItemClickListener {
-
+            viewModel.displayPropertyDetails(it)
         },
                 {old, new -> old.id == new.id },
                 {old, new ->  old == new})
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+            if (it != null){
+                findNavController().navigate(CategoriesFragmentDirections.categoriesToDetailCategory(it))
+                viewModel.displayPropertyDetailsComplete()
+            }
+        })
         return binding.root
     }
 }

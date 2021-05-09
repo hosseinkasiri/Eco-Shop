@@ -18,10 +18,14 @@
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
     <fragment
-        android:id="@+id/grouping"
+        android:id="@+id/categories"
         android:name="com.example.ecoshop.categories.CategoriesFragment"
-        android:label="fragment_grouping"
-        tools:layout="@layout/fragment_categories" />
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/categories_to_detailCategory"
+            app:destination="@id/detailCategory" />
+    </fragment>
     <fragment
         android:id="@+id/detail"
         android:name="com.example.ecoshop.detail.DetailFragment"
@@ -29,5 +33,14 @@
         <argument
             android:name="product"
             app:argType="com.example.ecoshop.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCategory"
+        android:name="com.example.ecoshop.detailCategory.DetailCategoryFragment"
+        android:label="fragment_detail_category"
+        tools:layout="@layout/fragment_detail_category" >
+        <argument
+            android:name="productCategory"
+            app:argType="com.example.ecoshop.model.ProductCategory" />
     </fragment>
 </navigation>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -40,28 +39,28 @@
                 android:id="@+id/imageRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:orientation="horizontal"
                 android:layout_margin="10dp"
-                imageListData="@{homeViewModel.bestProperty.get(1).images}"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarCardView" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbarCardView"
+                app:reverseLayout="true" />
 
             <TextView
                 android:id="@+id/bestText"
                 visibilityTextView="@{homeViewModel.status}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:padding="15dp"
                 android:text="@string/bestProducts"
+                android:paddingTop="10dp"
+                android:textColor="#000000"
                 android:textSize="18sp"
-                android:textStyle="bold|italic"
+                android:textStyle="bold"
                 android:visibility="gone"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageRecyclerView"
-                tools:layout_editor_absoluteY="40dp" />
+                app:layout_constraintEnd_toEndOf="@+id/imageRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/imageRecyclerView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bestProductRecycler"
@@ -82,15 +81,15 @@
                 android:id="@+id/popularText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/popularProducts"
                 android:textSize="18sp"
+                android:padding="15dp"
+                android:paddingTop="10dp"
                 android:visibility="gone"
+                android:textColor="#000000"
                 visibilityTextView="@{homeViewModel.status}"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/bestProductRecycler"
                 app:layout_constraintTop_toBottomOf="@+id/bestProductRecycler" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -112,15 +111,16 @@
                 android:id="@+id/newText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/newProducts"
                 android:textSize="18sp"
+                android:padding="15dp"
                 android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
+                android:textColor="#000000"
                 visibilityTextView="@{homeViewModel.status}"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/popularProductRecycler"
                 app:layout_constraintTop_toBottomOf="@+id/popularProductRecycler" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -130,7 +130,6 @@
                 android:layout_height="500dp"
                 android:layout_margin="10dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:orientation="vertical"
                 android:textAlignment="center"

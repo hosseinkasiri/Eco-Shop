@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ecoshop.Product
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.network.ProductRepository
@@ -25,6 +26,9 @@ class CategoriesViewModel: ViewModel() {
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
+    private val _navigateToSelectedProperty = MutableLiveData<ProductCategory>()
+    val navigateToSelectedProperty: LiveData<ProductCategory>
+        get() = _navigateToSelectedProperty
 
     init {
         getCategories()
@@ -43,5 +47,13 @@ class CategoriesViewModel: ViewModel() {
                 _status.value = ApiStatus.ERROR
             }
         }
+    }
+
+    fun displayPropertyDetails(productCategory: ProductCategory) {
+        _navigateToSelectedProperty.value = productCategory
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
     }
 }
