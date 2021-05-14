@@ -56,7 +56,7 @@ fun setTextTextView(textView: TextView, string: String?){
 
 @BindingAdapter("priceProduct")
 fun bindPrice(textView: TextView, salePrice: String?){
-    textView.text = salePrice + "تومان"
+    textView.text = salePrice + " " + "تومان"
 }
 
 @BindingAdapter("ApiStatus")

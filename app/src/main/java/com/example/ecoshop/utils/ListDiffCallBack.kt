@@ -1,9 +1,8 @@
 package com.example.ecoshop.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.ecoshop.Product
 
-class ListDiffCallBack<T : Any>(
+class ListDiffCallBack<T>(
         private val compareItems: (old: T, new: T) -> Boolean,
         private val compareContents: (old: T, new: T) -> Boolean):
         DiffUtil.ItemCallback<T>(){

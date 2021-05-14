@@ -46,12 +46,13 @@
 
             <TextView
                 android:id="@+id/priceDetail"
+                priceProduct="@{detailViewModel.selectedProduct.price}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textStyle="bold|italic"
-                setTextTextView="@{detailViewModel.selectedProduct.price}"
                 app:layout_constraintEnd_toEndOf="@id/nameDetail"
+                app:layout_constraintStart_toStartOf="@+id/nameDetail"
                 app:layout_constraintTop_toBottomOf="@+id/nameDetail"
                 tools:text="5,000,000 تومان" />
 
@@ -104,23 +105,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
             <TextView
-                android:id="@+id/weight"
+                android:id="@+id/shortDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/propertyDetail"
                 app:layout_constraintTop_toBottomOf="@+id/propertyDetail"
-                android:text="@string/weight"/>
-
-            <TextView
-                android:id="@+id/shortDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/weight"
-                app:layout_constraintTop_toBottomOf="@+id/weight"
                 android:text="@string/shortDescription"/>
 
             <TextView
@@ -179,18 +170,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
-
-            <TextView
-                android:id="@+id/weightDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                setTextTextView="@{detailViewModel.selectedProduct.weight}"
-                app:layout_constraintEnd_toStartOf="@+id/weight"
-                app:layout_constraintTop_toBottomOf="@+id/propertyDetail" />
 
             <TextView
                 android:id="@+id/shortDescriptionDetail"

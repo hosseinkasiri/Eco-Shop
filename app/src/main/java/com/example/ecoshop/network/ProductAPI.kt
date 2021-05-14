@@ -4,7 +4,6 @@ import com.example.ecoshop.Product
 import com.example.ecoshop.model.ProductCategory
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ProductAPI {
@@ -16,7 +15,11 @@ interface ProductAPI {
     fun getCategoriesAsync():
             Deferred<List<ProductCategory>>
 
-    @GET("products/categories/{id}")
-    fun getProductCategoriesAsync(@Path("id") id: String):
+    @GET("products")
+    fun getAllProductsAsync():
+            Deferred<List<Product>>
+
+    @GET("products")
+    fun getProductsCategory(@Query("category") id: Int):
             Deferred<List<Product>>
 }

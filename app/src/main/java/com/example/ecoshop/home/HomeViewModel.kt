@@ -36,6 +36,9 @@ class HomeViewModel: ViewModel() {
     private val _navigateToSelectedProperty = MutableLiveData<Product>()
     val navigateToSelectedProperty: LiveData<Product>
         get() = _navigateToSelectedProperty
+    private val _topProperties = MutableLiveData<List<Image>>()
+    val topProperties: LiveData<List<Image>>
+        get() = _topProperties
 
     init {
         getProperties()
@@ -56,10 +59,10 @@ class HomeViewModel: ViewModel() {
                 val listResult = getProperties.await()
                 val bestList = getBestProperties.await()
                 val popularList = getPopularProperties.await()
-                _status.value = ApiStatus.DONE
                 _property.value = listResult
                 _bestProperty.value = bestList
                 _popularProperty.value = popularList
+                _status.value = ApiStatus.DONE
             }catch (e:Exception){
                 Log.d("homeViewModel", e.message.toString())
                 _status.value = ApiStatus.ERROR
@@ -74,5 +77,14 @@ class HomeViewModel: ViewModel() {
 
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedProperty.value = null
+    }
+
+    fun getTopProducts(){
+        val listProduct = _bestProperty.value
+        val listImage = ArrayList<Image>()
+        for (i in 0..4){
+            listProduct?.get(i)?.images?.get(1)?.let { listImage.add(it) }
+        }
+        _topProperties.value = listImage
     }
 }

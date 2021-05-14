@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -10,10 +11,18 @@
             type="com.example.ecoshop.utils.ListItemClickListener" />
     </data>
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        imageUrl="@{image.src}"
-        android:onClick="@{ () -> clickListener.onClick(image)}">
-    </ImageView>
+        app:cardCornerRadius="4dp"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            imageUrl="@{image.src}"
+            android:onClick="@{ () -> clickListener.onClick(image)}">
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+
 </layout>

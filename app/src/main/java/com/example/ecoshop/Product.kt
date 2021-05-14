@@ -3,6 +3,7 @@ package com.example.ecoshop
 import android.os.Parcel
 import android.os.Parcelable
 import com.example.ecoshop.model.Image
+import com.example.ecoshop.model.ProductCategory
 import com.squareup.moshi.Json
 
 data class Product(val id: Int,
@@ -22,7 +23,8 @@ data class Product(val id: Int,
                    val averageRating: String?,
                    @Json(name = "rating_count")
                    val ratingCount: Int,
-                   val images: List<Image>?): Parcelable {
+                   val images: List<Image>?,
+                   val categories: List<ProductCategory>?): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString(),
@@ -36,7 +38,8 @@ data class Product(val id: Int,
             parcel.readString(),
             parcel.readString(),
             parcel.readInt(),
-            parcel.createTypedArrayList(Image)) {
+            parcel.createTypedArrayList(Image),
+            parcel.createTypedArrayList(ProductCategory)) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -53,6 +56,7 @@ data class Product(val id: Int,
         parcel.writeString(averageRating)
         parcel.writeInt(ratingCount)
         parcel.writeTypedList(images)
+        parcel.writeTypedList(categories)
     }
 
     override fun describeContents(): Int {
