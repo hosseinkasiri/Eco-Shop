@@ -26,7 +26,6 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
-    private lateinit var images: MutableList<com.example.ecoshop.model.Image>
     private  lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -71,10 +70,6 @@ class HomeFragment : Fragment() {
         },
                 { old, new -> old.id == new.id },
                 { old, new -> old == new })
-
-//        Handler(Looper.getMainLooper()).postDelayed(Runnable {
-//            binding.imageRecyclerView.smoothScrollToPosition(imageAdapter.itemCount + 1)
-//        }, 3000)
 
         binding.imageRecyclerView.adapter = imageAdapter
         recyclerView = binding.imageRecyclerView

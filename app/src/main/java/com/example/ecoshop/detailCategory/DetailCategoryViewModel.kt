@@ -33,9 +33,15 @@ class DetailCategoryViewModel(productCategory: ProductCategory, application: App
         getProducts()
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
     private fun getProducts(){
         coroutineScope.launch {
-            val getProductDeferred = repository.getProducts().getProductsCategory(_productCategory.value!!.id)
+            val getProductDeferred = repository.getProducts().
+            getProductsCategory(_productCategory.value!!.id)
             try {
                 val listResult = getProductDeferred.await()
                 _products.value = listResult

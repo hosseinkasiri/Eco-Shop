@@ -34,6 +34,11 @@ class CategoriesViewModel: ViewModel() {
         getCategories()
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
     private fun getCategories(){
         coroutineScope.launch {
             val getPropertyDeferred = repository.getProducts().getCategoriesAsync()

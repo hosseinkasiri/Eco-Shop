@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.ecoshop.Product
 import com.example.ecoshop.customViews.ImageAdapter
+import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.databinding.FragmentDetailBinding
 import com.example.ecoshop.utils.ListItemClickListener
 
@@ -30,6 +31,11 @@ class DetailFragment : Fragment() {
                 {old, new -> old.id == new.id },
                 {old, new ->  old == new})
         binding.detailViewModel = viewModel
+        binding.similarProductRecycler.adapter = ListProductAdapter(ListItemClickListener {
+
+        },
+            { old, new -> old.id == new.id },
+            { old, new -> old == new })
         return binding.root
     }
 }

@@ -32,13 +32,15 @@
 
             <TextView
                 android:id="@+id/nameDetail"
+                setTextTextView="@{detailViewModel.selectedProduct.name}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 android:textStyle="bold|italic"
-                setTextTextView="@{detailViewModel.selectedProduct.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageRecyclerView"
@@ -49,10 +51,9 @@
                 priceProduct="@{detailViewModel.selectedProduct.price}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textStyle="bold|italic"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/nameDetail"
-                app:layout_constraintStart_toStartOf="@+id/nameDetail"
                 app:layout_constraintTop_toBottomOf="@+id/nameDetail"
                 tools:text="5,000,000 تومان" />
 
@@ -60,8 +61,11 @@
                 android:id="@+id/pathRelative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/priceDetail"
-                app:layout_constraintTop_toBottomOf="@+id/priceDetail">
+                android:layout_marginEnd="10dp"
+                regularPriceVisibility="@{detailViewModel.selectedProduct.onSale}"
+                app:layout_constraintTop_toTopOf="@+id/priceDetail"
+                app:layout_constraintEnd_toStartOf="@+id/priceDetail"
+                app:layout_constraintBottom_toBottomOf="@+id/priceDetail">
 
                 <TextView
                     android:id="@+id/regularPriceDetail"
@@ -70,11 +74,11 @@
                     android:textColor="@color/regularPriceColor"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    setTextTextView="@{detailViewModel.selectedProduct.regularPrice}"
+                    priceProduct="@{detailViewModel.selectedProduct.regularPrice}"
                     tools:text="5,500,000" />
 
                 <View
-                    android:layout_width="60dp"
+                    android:layout_width="100dp"
                     android:layout_height="1dp"
                     android:background="@color/regularPriceColor"
                     android:layout_centerVertical="true"
@@ -86,9 +90,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:background="#E3DEDE"
+                android:background="#EFECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pathRelative" />
@@ -97,22 +101,23 @@
                 android:id="@+id/propertyDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="13dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/status"
+                android:textColor="@color/black"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
             <TextView
-                android:id="@+id/shortDescription"
+                android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@string/categories"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/propertyDetail"
-                app:layout_constraintTop_toBottomOf="@+id/propertyDetail"
-                android:text="@string/shortDescription"/>
+                app:layout_constraintTop_toBottomOf="@+id/propertyDetail" />
 
             <TextView
                 android:id="@+id/ratingCount"
@@ -120,31 +125,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/shortDescription"
-                app:layout_constraintTop_toBottomOf="@+id/shortDescription"
+                app:layout_constraintEnd_toEndOf="@+id/category"
+                app:layout_constraintTop_toBottomOf="@+id/category"
                 android:text="@string/ratingCount"/>
 
             <TextView
-                android:id="@+id/averageRating"
+                android:id="@+id/tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/ratingCount"
                 app:layout_constraintTop_toBottomOf="@+id/ratingCount"
-                android:text="@string/averageRating"/>
+                android:text="@string/tag"/>
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:background="#E3DEDE"
+                android:background="#EFECEC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/averageRating" />
+                app:layout_constraintTop_toBottomOf="@+id/tags" />
 
 
             <TextView
@@ -152,8 +157,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="13dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/description"
+                android:textColor="@color/black"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -166,21 +172,22 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                setTextTextView="@{detailViewModel.selectedProduct.description}"
+                setHtmlText="@{detailViewModel.selectedProduct.description}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <TextView
-                android:id="@+id/shortDescriptionDetail"
+                android:id="@+id/categoryDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                setTextTextView="@{detailViewModel.selectedProduct.shortDescription}"
-                app:layout_constraintEnd_toStartOf="@+id/shortDescription"
-                app:layout_constraintTop_toTopOf="@+id/shortDescription" />
+                android:textColor="@color/black"
+                setCategoryProduct="@{detailViewModel.selectedProduct.categories}"
+                app:layout_constraintEnd_toStartOf="@+id/category"
+                app:layout_constraintTop_toTopOf="@+id/category" />
 
             <TextView
                 android:id="@+id/ratingCountDetail"
@@ -189,20 +196,106 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                setTextTextView="@{Integer.toString(detailViewModel.selectedProduct.ratingCount)}"
+                android:textColor="#2798F3"
+                setRatingCount="@{Integer.toString(detailViewModel.selectedProduct.ratingCount)}"
                 app:layout_constraintEnd_toStartOf="@+id/ratingCount"
                 app:layout_constraintTop_toTopOf="@+id/ratingCount" />
 
             <TextView
-                android:id="@+id/averageRatingDetail"
+                android:id="@+id/tagsDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                setTextTextView="@{detailViewModel.selectedProduct.averageRating}"
-                app:layout_constraintEnd_toStartOf="@+id/averageRating"
-                app:layout_constraintTop_toTopOf="@+id/averageRating" />
+                android:textColor="@color/black"
+                setTags="@{detailViewModel.selectedProduct.tags}"
+                app:layout_constraintEnd_toStartOf="@+id/tags"
+                app:layout_constraintTop_toTopOf="@+id/tags" />
+
+            <ImageView
+                android:id="@+id/starImage1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                starNumber="@{1}"
+                averageRating="@{Double.valueOf(detailViewModel.selectedProduct.averageRating)}"
+                app:layout_constraintBottom_toTopOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/nameDetail"
+                app:srcCompat="@drawable/ic_action_full_star" />
+
+            <ImageView
+                android:id="@+id/starImage2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                starNumber="@{2}"
+                averageRating="@{Double.valueOf(detailViewModel.selectedProduct.averageRating)}"
+                app:layout_constraintBottom_toBottomOf="@+id/starImage1"
+                app:layout_constraintStart_toEndOf="@+id/starImage1"
+                app:layout_constraintTop_toTopOf="@+id/starImage1"
+                app:srcCompat="@drawable/ic_action_full_star"
+                android:contentDescription="@string/todo" />
+
+            <ImageView
+                android:id="@+id/starImage3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                starNumber="@{3}"
+                averageRating="@{Double.valueOf(detailViewModel.selectedProduct.averageRating)}"
+                app:layout_constraintBottom_toBottomOf="@+id/starImage2"
+                app:layout_constraintStart_toEndOf="@+id/starImage2"
+                app:layout_constraintTop_toTopOf="@+id/starImage2"
+                app:srcCompat="@drawable/ic_action_full_star"
+                android:contentDescription="@string/todo" />
+
+            <ImageView
+                android:id="@+id/starImage4"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                starNumber="@{4}"
+                averageRating="@{Double.valueOf(detailViewModel.selectedProduct.averageRating)}"
+                app:layout_constraintBottom_toBottomOf="@+id/starImage3"
+                app:layout_constraintStart_toEndOf="@+id/starImage3"
+                app:layout_constraintTop_toTopOf="@+id/starImage3"
+                app:srcCompat="@drawable/ic_action_empty_star"
+                android:contentDescription="@string/todo" />
+
+            <ImageView
+                android:id="@+id/starImage5"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                starNumber="@{5}"
+                averageRating="@{Double.valueOf(detailViewModel.selectedProduct.averageRating)}"
+                app:layout_constraintBottom_toBottomOf="@+id/starImage4"
+                app:layout_constraintStart_toEndOf="@+id/starImage4"
+                app:layout_constraintTop_toTopOf="@+id/starImage4"
+                app:srcCompat="@drawable/ic_action_empty_star"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/similar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:text="محصولات مشابه"
+                android:textColor="@color/black"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/similarProductRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                listData="@{detailViewModel.similarProducts}"
+                app:reverseLayout="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/similar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
