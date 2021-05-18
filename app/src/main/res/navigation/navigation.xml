@@ -33,6 +33,9 @@
         <argument
             android:name="product"
             app:argType="com.example.ecoshop.Product" />
+        <action
+            android:id="@+id/action_detail_self"
+            app:destination="@id/detail" />
     </fragment>
     <fragment
         android:id="@+id/detailCategory"

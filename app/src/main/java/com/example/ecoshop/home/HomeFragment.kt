@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
-    private  lateinit var recyclerView: RecyclerView
+    private  lateinit var imageRecycler: RecyclerView
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -69,12 +69,12 @@ class HomeFragment : Fragment() {
                 { old, new -> old == new })
 
         binding.imageRecyclerView.adapter = imageAdapter
-        recyclerView = binding.imageRecyclerView
+        imageRecycler = binding.imageRecyclerView
     }
 
     override fun onStart() {
         super.onStart()
         val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(recyclerView)
+        snapHelper.attachToRecyclerView(imageRecycler)
     }
 }

@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.example.ecoshop.Product
 import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ImageAdapter
@@ -22,6 +26,8 @@ class DetailFragment : Fragment() {
     private lateinit var detailViewModelFactory: DetailViewModelFactory
     private lateinit var viewModel: DetailViewModel
     private lateinit var adapter: ListProductAdapter
+    private lateinit var imageRecycler: RecyclerView
+    private lateinit var similarRecycler: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -29,26 +35,28 @@ class DetailFragment : Fragment() {
         product = DetailFragmentArgs.fromBundle(requireArguments()).product
         detailViewModelFactory = DetailViewModelFactory(product, (activity)!!.application)
         viewModel = ViewModelProvider(this, detailViewModelFactory).get(DetailViewModel::class.java)
-        setRecyclers()
-        binding.similarProductRecycler.adapter = adapter
+        binding.detailViewModel = viewModel
+        imageRecycler = binding.imageRecyclerView
+        similarRecycler = binding.similarProductRecycler
+        setAttributes()
         handleSimilarError()
         return binding.root
     }
 
-    private fun setRecyclers() {
-        binding.imageRecyclerView.adapter = ImageAdapter(ListItemClickListener {
+    private fun setAttributes() {
+        imageRecycler.adapter = ImageAdapter(ListItemClickListener {
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
-        binding.detailViewModel = viewModel
         adapter = ListProductAdapter(ListItemClickListener {
-
+            findNavController().navigate(DetailFragmentDirections.actionDetailSelf(it))
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
         viewModel.similarProducts.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+        similarRecycler.adapter = adapter
     }
 
     private fun handleSimilarError() {
@@ -67,5 +75,11 @@ class DetailFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(imageRecycler)
     }
 }
