@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ecoshop.Product
+import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.network.ProductRepository
 import com.example.ecoshop.network.ProductRepositoryImpl
@@ -27,6 +28,9 @@ class DetailCategoryViewModel(productCategory: ProductCategory, application: App
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>>
         get() = _products
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
 
     init {
         _productCategory.value = productCategory
@@ -43,12 +47,14 @@ class DetailCategoryViewModel(productCategory: ProductCategory, application: App
             val getProductDeferred = repository.getProducts().
             getProductsCategory(_productCategory.value!!.id)
             try {
+                _status.value = ApiStatus.LOADING
                 val listResult = getProductDeferred.await()
                 _products.value = listResult
-                Log.d("detailCategory", listResult.size.toString())
+                _status.value = ApiStatus.DONE
             }catch (e: Exception){
                 Log.d("detailCategory", e.message.toString())
                 _products.value = ArrayList()
+                _status.value = ApiStatus.ERROR
             }
         }
     }

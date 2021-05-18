@@ -45,5 +45,8 @@
         <argument
             android:name="productCategory"
             app:argType="com.example.ecoshop.model.ProductCategory" />
+        <action
+            android:id="@+id/action_detailCategory_to_detail"
+            app:destination="@id/detail" />
     </fragment>
 </navigation>

@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.databinding.FragmentDetailCategoryBinding
+import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.utils.ListItemClickListener
 
@@ -28,7 +31,7 @@ class DetailCategoryFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(DetailCategoryViewModel::class.java)
         binding.viewModel = viewModel
         adapter = ListProductVerticalAdapter(ListItemClickListener {
-
+            findNavController().navigate(DetailCategoryFragmentDirections.actionDetailCategoryToDetail(it))
         },
             {old, new -> old.id == new.id },
             {old, new ->  old == new})
@@ -36,6 +39,25 @@ class DetailCategoryFragment : Fragment() {
             adapter.submitList(it)
         })
         binding.recyclerDetailCategory.adapter = adapter
+        handleError()
         return binding.root
+    }
+
+    private fun handleError() {
+        viewModel.status.observe(viewLifecycleOwner, Observer { status ->
+            when (status) {
+                ApiStatus.LOADING -> {
+                    binding.statusImage.visibility = View.VISIBLE
+                    binding.statusImage.setImageResource(R.drawable.loading_animation)
+                }
+                ApiStatus.ERROR -> {
+                    binding.statusImage.visibility = View.VISIBLE
+                    binding.statusImage.setImageResource(R.drawable.ic_connection_error)
+                }
+                ApiStatus.DONE -> {
+                    binding.statusImage.visibility = View.GONE
+                }
+            }
+        })
     }
 }
