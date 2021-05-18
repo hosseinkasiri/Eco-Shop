@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.ecoshop.Product
+import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.network.ProductRepository
 import com.example.ecoshop.network.ProductRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +27,9 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
     private val _similarProducts = MutableLiveData<List<Product>>()
     val similarProducts: LiveData<List<Product>>
         get() = _similarProducts
+    private val _statusDetail = MutableLiveData<ApiStatus>()
+    val statusDetail: LiveData<ApiStatus>
+        get() = _statusDetail
 
     init {
         _selectedProduct.value = product
@@ -41,15 +46,18 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
             val listResult = ArrayList<Product>()
             val size = _selectedProduct.value?.relatedProductIds?.size?.minus(1) as Int
             try {
+                _statusDetail.value = ApiStatus.LOADING
                 for (i in 0 until size){
                     val getProperty = _selectedProduct.value!!.relatedProductIds?.get(i)?.let {
                         repository.getProducts().getProductByIdAsync(it)
                     }
                     listResult.add(getProperty!!.await())
                 }
+                _statusDetail.value = ApiStatus.DONE
                 _similarProducts.value = listResult
             }catch (e: Exception){
                 Log.d("detailViewModel", e.message.toString())
+                _statusDetail.value = ApiStatus.ERROR
             }
         }
     }

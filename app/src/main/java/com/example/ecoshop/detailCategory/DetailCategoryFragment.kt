@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.databinding.FragmentDetailCategoryBinding
@@ -17,6 +18,7 @@ class DetailCategoryFragment : Fragment() {
     private lateinit var viewModel: DetailCategoryViewModel
     private lateinit var viewModelFactory: DetailCategoryFactory
     private lateinit var productCategory: ProductCategory
+    private lateinit var adapter:ListProductVerticalAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -25,11 +27,15 @@ class DetailCategoryFragment : Fragment() {
         viewModelFactory = DetailCategoryFactory(productCategory, (activity)!!.application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DetailCategoryViewModel::class.java)
         binding.viewModel = viewModel
-        binding.recyclerDetailCategory.adapter = ListProductVerticalAdapter(ListItemClickListener {
+        adapter = ListProductVerticalAdapter(ListItemClickListener {
 
         },
-                {old, new -> old.id == new.id },
-                {old, new ->  old == new})
+            {old, new -> old.id == new.id },
+            {old, new ->  old == new})
+        viewModel.products.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+        binding.recyclerDetailCategory.adapter = adapter
         return binding.root
     }
 }

@@ -1,7 +1,6 @@
 package com.example.ecoshop.home
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.ecoshop.customViews.ImageAdapter
@@ -18,7 +16,6 @@ import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.databinding.FragmentHomeBinding
 import com.example.ecoshop.utils.ListItemClickListener
-
 
 class HomeFragment : Fragment() {
 

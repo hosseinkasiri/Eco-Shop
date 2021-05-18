@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ecoshop.customViews.CategoryAdapter
 import com.example.ecoshop.customViews.ImageAdapter
-import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
+import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.Image
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.model.Tag
@@ -60,8 +60,22 @@ fun setTextTextView(textView: TextView, string: String?){
 }
 
 @BindingAdapter("priceProduct")
-fun bindPrice(textView: TextView, salePrice: String?){
-    textView.text = salePrice + " " + "تومان"
+fun bindPrice(textView: TextView, price: String?){
+    var array = ArrayList<Char>()
+    val charArray = price!!.toCharArray()
+    var number = 1
+    for (i in charArray.size-1 downTo 0){
+        if (number%3 == 0 && number != 1){
+            array.add(charArray[i])
+            array.add(',')
+            number++
+            continue
+        }
+        array.add(charArray[i])
+        number++
+    }
+    array.reverse()
+    textView.text = array.joinToString("") + " " + "تومان"
 }
 
 @BindingAdapter("setCategoryProduct")
@@ -137,6 +151,5 @@ fun bindStarRating(imageView: ImageView, averageRating: Double, starNumber: Int)
 
 @BindingAdapter("regularPriceVisibility")
 fun bindRegularPrice(relativeLayout: RelativeLayout, onSale: Boolean){
-    if (!onSale)
-        relativeLayout.visibility = View.GONE
+    if (!onSale) relativeLayout.visibility = View.GONE
 }
