@@ -63,12 +63,13 @@ class HomeViewModel: ViewModel() {
                 _bestProperty.value = bestList
                 _popularProperty.value = popularList
                 _status.value = ApiStatus.DONE
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 Log.d("homeViewModel", e.message.toString())
                 _status.value = ApiStatus.ERROR
                 _property.value = ArrayList()
             }
         }
+
     }
 
     fun displayPropertyDetails(product: Product) {

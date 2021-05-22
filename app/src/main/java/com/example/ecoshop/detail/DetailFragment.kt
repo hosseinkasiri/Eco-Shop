@@ -1,6 +1,7 @@
 package com.example.ecoshop.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.ecoshop.Product
 import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ImageAdapter
 import com.example.ecoshop.customViews.ListProductAdapter
+import com.example.ecoshop.customViews.SelectedAdapter
 import com.example.ecoshop.databinding.FragmentDetailBinding
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.utils.ListItemClickListener
@@ -25,9 +27,11 @@ class DetailFragment : Fragment() {
     private lateinit var product: Product
     private lateinit var detailViewModelFactory: DetailViewModelFactory
     private lateinit var viewModel: DetailViewModel
-    private lateinit var adapter: ListProductAdapter
+    private lateinit var similarAdapter: ListProductAdapter
+    private lateinit var imageAdapter: ImageAdapter
     private lateinit var imageRecycler: RecyclerView
     private lateinit var similarRecycler: RecyclerView
+    private lateinit var selectedRecycler: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -38,25 +42,30 @@ class DetailFragment : Fragment() {
         binding.detailViewModel = viewModel
         imageRecycler = binding.imageRecyclerView
         similarRecycler = binding.similarProductRecycler
+        selectedRecycler = binding.selectedRecycler
         setAttributes()
         handleSimilarError()
         return binding.root
     }
 
     private fun setAttributes() {
-        imageRecycler.adapter = ImageAdapter(ListItemClickListener {
+        imageAdapter = ImageAdapter(ListItemClickListener {
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
-        adapter = ListProductAdapter(ListItemClickListener {
+        similarAdapter = ListProductAdapter(ListItemClickListener {
             findNavController().navigate(DetailFragmentDirections.actionDetailSelf(it))
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
         viewModel.similarProducts.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            similarAdapter.submitList(it)
         })
-        similarRecycler.adapter = adapter
+        selectedRecycler.adapter = SelectedAdapter(ListItemClickListener {
+
+        }, product.images!!.size)
+        imageRecycler.adapter = imageAdapter
+        similarRecycler.adapter = similarAdapter
     }
 
     private fun handleSimilarError() {
