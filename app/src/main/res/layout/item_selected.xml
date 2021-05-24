@@ -14,6 +14,7 @@
         android:onClick="@{() -> clickListener.onClick()">
 
         <ImageView
+            android:id="@+id/imageSelected"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_action_empty_circle"

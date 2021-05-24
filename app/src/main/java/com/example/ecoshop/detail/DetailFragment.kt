@@ -1,11 +1,10 @@
 package com.example.ecoshop.detail
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,7 +15,7 @@ import com.example.ecoshop.Product
 import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ImageAdapter
 import com.example.ecoshop.customViews.ListProductAdapter
-import com.example.ecoshop.customViews.SelectedAdapter
+import com.example.ecoshop.customViews.CircularIndicatorAdapter
 import com.example.ecoshop.databinding.FragmentDetailBinding
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.utils.ListItemClickListener
@@ -31,7 +30,7 @@ class DetailFragment : Fragment() {
     private lateinit var imageAdapter: ImageAdapter
     private lateinit var imageRecycler: RecyclerView
     private lateinit var similarRecycler: RecyclerView
-    private lateinit var selectedRecycler: RecyclerView
+    private lateinit var circularIndicator: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -42,9 +41,10 @@ class DetailFragment : Fragment() {
         binding.detailViewModel = viewModel
         imageRecycler = binding.imageRecyclerView
         similarRecycler = binding.similarProductRecycler
-        selectedRecycler = binding.selectedRecycler
+        circularIndicator = binding.selectedRecycler
         setAttributes()
         handleSimilarError()
+        setItemScrolling()
         return binding.root
     }
 
@@ -61,7 +61,7 @@ class DetailFragment : Fragment() {
         viewModel.similarProducts.observe(viewLifecycleOwner, Observer {
             similarAdapter.submitList(it)
         })
-        selectedRecycler.adapter = SelectedAdapter(ListItemClickListener {
+        circularIndicator.adapter = CircularIndicatorAdapter(ListItemClickListener {
 
         }, product.images!!.size)
         imageRecycler.adapter = imageAdapter
@@ -82,6 +82,15 @@ class DetailFragment : Fragment() {
                 ApiStatus.DONE -> {
                     binding.statusImageDetail.visibility = View.GONE
                 }
+            }
+        })
+    }
+
+    fun setItemScrolling(){
+        imageRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                circularIndicator.smoothScrollToPosition(imageAdapter.itemCount)
             }
         })
     }

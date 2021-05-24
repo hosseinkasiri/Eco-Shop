@@ -36,8 +36,8 @@ class HomeViewModel: ViewModel() {
     private val _navigateToSelectedProperty = MutableLiveData<Product>()
     val navigateToSelectedProperty: LiveData<Product>
         get() = _navigateToSelectedProperty
-    private val _topProperties = MutableLiveData<List<Image>>()
-    val topProperties: LiveData<List<Image>>
+    private val _topProperties = MutableLiveData<List<Product>>()
+    val topProperties: LiveData<List<Product>>
         get() = _topProperties
 
     init {
@@ -81,11 +81,10 @@ class HomeViewModel: ViewModel() {
     }
 
     fun getTopProducts(){
-        val listProduct = _bestProperty.value
-        val listImage = ArrayList<Image>()
+        val list = ArrayList<Product>()
         for (i in 0..4){
-            listProduct?.get(i)?.images?.get(1)?.let { listImage.add(it) }
+            list.add(_bestProperty.value!![i])
         }
-        _topProperties.value = listImage
+        _topProperties.value = list
     }
 }

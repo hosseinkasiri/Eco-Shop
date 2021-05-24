@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ecoshop.databinding.ItemSelectedBinding
 import com.example.ecoshop.utils.ListItemClickListener
 
-class SelectedAdapter(private val clickListener: ListItemClickListener<Unit>, private val size: Int):
-    RecyclerView.Adapter<SelectedAdapter.SelectedHolder>() {
+class CircularIndicatorAdapter(private val clickListener: ListItemClickListener<Unit>, private val size: Int):
+    RecyclerView.Adapter<CircularIndicatorAdapter.SelectedHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectedHolder {
         return SelectedHolder.from(parent)
@@ -27,6 +27,7 @@ class SelectedAdapter(private val clickListener: ListItemClickListener<Unit>, pr
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
+
 
         companion object {
             fun from(parent: ViewGroup): SelectedHolder {
