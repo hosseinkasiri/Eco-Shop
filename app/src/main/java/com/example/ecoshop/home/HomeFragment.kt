@@ -13,10 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.customViews.ProductBannerAdapter
 import com.example.ecoshop.databinding.FragmentHomeBinding
+import com.example.ecoshop.navigator.CustomNavigator
 import com.example.ecoshop.utils.ListItemClickListener
 
 class HomeFragment : Fragment() {
@@ -41,7 +43,8 @@ class HomeFragment : Fragment() {
         bindRecyclerViews()
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                findNavController().navigate(HomeFragmentDirections.actionHomeToDetail(it))
+                findNavController().navigate(HomeFragmentDirections.
+                actionHomeFragmentToDetailFragment(it))
                 viewModel.displayPropertyDetailsComplete()
             }
         })
@@ -79,7 +82,7 @@ class HomeFragment : Fragment() {
         imageRecycler.adapter = bannerAdapter
     }
 
-    fun autoScroll(){
+    private fun autoScroll(){
         handler = Handler(Looper.getMainLooper())
         runnable = Runnable {
             if (position != 4) {

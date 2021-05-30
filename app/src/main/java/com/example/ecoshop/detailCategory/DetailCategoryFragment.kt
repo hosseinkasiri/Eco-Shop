@@ -31,7 +31,8 @@ class DetailCategoryFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(DetailCategoryViewModel::class.java)
         binding.viewModel = viewModel
         adapter = ListProductVerticalAdapter(ListItemClickListener {
-            findNavController().navigate(DetailCategoryFragmentDirections.actionDetailCategoryToDetail(it))
+            findNavController().navigate(DetailCategoryFragmentDirections.
+            actionDetailCategoryFragmentToDetailFragment2(it))
         },
             {old, new -> old.id == new.id },
             {old, new ->  old == new})

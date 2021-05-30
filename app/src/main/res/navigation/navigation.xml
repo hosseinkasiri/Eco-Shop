@@ -1,52 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/home">
-    <fragment
-        android:id="@+id/home"
-        android:name="com.example.ecoshop.home.HomeFragment"
-        android:label="HomeFragment" >
-        <action
-            android:id="@+id/action_home_to_detail"
-            app:destination="@id/detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/user"
-        android:name="com.example.ecoshop.user.UserFragment"
-        android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
-    <fragment
-        android:id="@+id/categories"
-        android:name="com.example.ecoshop.categories.CategoriesFragment"
-        android:label="CategoriesFragment"
-        tools:layout="@layout/fragment_categories" >
-        <action
-            android:id="@+id/categories_to_detailCategory"
-            app:destination="@id/detailCategory" />
-    </fragment>
-    <fragment
-        android:id="@+id/detail"
-        android:name="com.example.ecoshop.detail.DetailFragment"
-        android:label="DetailFragment" >
-        <argument
-            android:name="product"
-            app:argType="com.example.ecoshop.Product" />
-        <action
-            android:id="@+id/action_detail_self"
-            app:destination="@id/detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailCategory"
-        android:name="com.example.ecoshop.detailCategory.DetailCategoryFragment"
-        android:label="fragment_detail_category"
-        tools:layout="@layout/fragment_detail_category" >
-        <argument
-            android:name="productCategory"
-            app:argType="com.example.ecoshop.model.ProductCategory" />
-        <action
-            android:id="@+id/action_detailCategory_to_detail"
-            app:destination="@id/detail" />
-    </fragment>
+    app:startDestination="@id/navigation_home">
+
+    <custom_fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.ecoshop.home.HomeContainerFragment"
+        android:label="HomeContainerFragment" />
+    <custom_fragment
+        android:id="@+id/navigation_category"
+        android:name="com.example.ecoshop.categories.CategoriesContainerFragment"
+        android:label="CategoriesContainerFragment" />
+    <custom_fragment
+        android:id="@+id/navigation_buy"
+        android:name="com.example.ecoshop.buy.BuyContainerFragment"
+        android:label="BuyContainerFragment" />
 </navigation>

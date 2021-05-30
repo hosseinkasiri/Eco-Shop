@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,8 +20,8 @@ class CategoriesFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCategoriesBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
@@ -30,11 +29,12 @@ class CategoriesFragment : Fragment() {
         binding.categoriesRecycler.adapter = CategoryAdapter(ListItemClickListener {
             viewModel.displayPropertyDetails(it)
         },
-                {old, new -> old.id == new.id },
-                {old, new ->  old == new})
+            {old, new -> old.id == new.id },
+            {old, new ->  old == new})
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if (it != null){
-                findNavController().navigate(CategoriesFragmentDirections.categoriesToDetailCategory(it))
+                findNavController().navigate(CategoriesFragmentDirections.
+                actionCategoriesFragmentToDetailCategoryFragment(it))
                 viewModel.displayPropertyDetailsComplete()
             }
         })

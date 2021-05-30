@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_category"
+    app:startDestination="@id/categoriesFragment">
+
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.ecoshop.categories.CategoriesFragment"
+        android:label="CategoriesFragment" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_detailCategoryFragment"
+            app:destination="@id/detailCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCategoryFragment"
+        android:name="com.example.ecoshop.detailCategory.DetailCategoryFragment"
+        android:label="DetailCategoryFragment" >
+        <action
+            android:id="@+id/action_detailCategoryFragment_to_detailFragment2"
+            app:destination="@id/detailFragment2" />
+        <argument
+            android:name="productCategory"
+            app:argType="com.example.ecoshop.model.ProductCategory" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment2"
+        android:name="com.example.ecoshop.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="product"
+            app:argType="com.example.ecoshop.Product" />
+        <action
+            android:id="@+id/action_detail_self"
+            app:destination="@id/detailFragment2" />
+    </fragment>
+</navigation>
