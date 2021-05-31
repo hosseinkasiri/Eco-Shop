@@ -58,4 +58,8 @@ class DetailCategoryViewModel(productCategory: ProductCategory, application: App
             }
         }
     }
+
+    fun reLoadingProducts(){
+        getProducts()
+    }
 }

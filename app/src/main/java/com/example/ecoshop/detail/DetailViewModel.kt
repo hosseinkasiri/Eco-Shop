@@ -61,4 +61,8 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
             }
         }
     }
+
+    fun reLoadingDetail(){
+        getSimilarProducts()
+    }
 }

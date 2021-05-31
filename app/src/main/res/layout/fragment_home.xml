@@ -46,7 +46,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbarCardView"
-                android:onClick="@{handler."
                 app:reverseLayout="true" />
 
             <TextView
@@ -151,6 +150,17 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.399" />
+
+            <Button
+                android:id="@+id/reloading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/tryAgain"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/status_image"
+                app:layout_constraintStart_toStartOf="@+id/status_image"
+                app:layout_constraintTop_toBottomOf="@+id/status_image" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

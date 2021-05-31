@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ecoshop.customViews.CategoryAdapter
 import com.example.ecoshop.databinding.FragmentCategoriesBinding
+import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.utils.ListItemClickListener
 
 class CategoriesFragment : Fragment() {
@@ -26,18 +27,21 @@ class CategoriesFragment : Fragment() {
         binding = FragmentCategoriesBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.categoriesRecycler.adapter = CategoryAdapter(ListItemClickListener {
-            viewModel.displayPropertyDetails(it)
+        binding.categoriesRecycler.adapter = CategoryAdapter(ListItemClickListener { productCategory ->
+            findNavController().navigate(CategoriesFragmentDirections.
+            actionCategoriesFragmentToDetailCategoryFragment(productCategory))
         },
             {old, new -> old.id == new.id },
             {old, new ->  old == new})
-        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
-            if (it != null){
-                findNavController().navigate(CategoriesFragmentDirections.
-                actionCategoriesFragmentToDetailCategoryFragment(it))
-                viewModel.displayPropertyDetailsComplete()
-            }
+        viewModel.status.observe(viewLifecycleOwner, Observer { apiStatus ->
+            if (apiStatus == ApiStatus.ERROR)
+                binding.reloading.visibility = View.VISIBLE
+            else
+                binding.reloading.visibility = View.GONE
         })
+        binding.reloading.setOnClickListener {
+            viewModel.reLoading()
+        }
         return binding.root
     }
 }

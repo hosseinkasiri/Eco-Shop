@@ -3,15 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="clickListener"
-            type="com.example.ecoshop.utils.ListItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:onClick="@{() -> clickListener.onClick()">
+        android:layout_height="10dp">
 
         <ImageView
             android:id="@+id/imageSelected"

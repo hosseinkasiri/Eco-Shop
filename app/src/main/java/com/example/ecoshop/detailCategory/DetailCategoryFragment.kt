@@ -30,14 +30,14 @@ class DetailCategoryFragment : Fragment() {
         viewModelFactory = DetailCategoryFactory(productCategory, (activity)!!.application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DetailCategoryViewModel::class.java)
         binding.viewModel = viewModel
-        adapter = ListProductVerticalAdapter(ListItemClickListener {
+        adapter = ListProductVerticalAdapter(ListItemClickListener { product ->
             findNavController().navigate(DetailCategoryFragmentDirections.
-            actionDetailCategoryFragmentToDetailFragment2(it))
+            actionDetailCategoryFragmentToDetailFragment2(product))
         },
             {old, new -> old.id == new.id },
             {old, new ->  old == new})
-        viewModel.products.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+        viewModel.products.observe(viewLifecycleOwner, Observer { products ->
+            adapter.submitList(products)
         })
         binding.recyclerDetailCategory.adapter = adapter
         handleError()
@@ -50,15 +50,21 @@ class DetailCategoryFragment : Fragment() {
                 ApiStatus.LOADING -> {
                     binding.statusImage.visibility = View.VISIBLE
                     binding.statusImage.setImageResource(R.drawable.loading_animation)
+                    binding.reloading.visibility = View.GONE
                 }
                 ApiStatus.ERROR -> {
                     binding.statusImage.visibility = View.VISIBLE
                     binding.statusImage.setImageResource(R.drawable.ic_connection_error)
+                    binding.reloading.visibility = View.VISIBLE
                 }
                 ApiStatus.DONE -> {
                     binding.statusImage.visibility = View.GONE
+                    binding.reloading.visibility = View.GONE
                 }
             }
         })
+        binding.reloading.setOnClickListener {
+            viewModel.reLoadingProducts()
+        }
     }
 }

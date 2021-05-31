@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ecoshop.model.Image
 import com.example.ecoshop.Product
 import com.example.ecoshop.network.ProductRepository
 import com.example.ecoshop.network.ProductRepositoryImpl
@@ -33,9 +32,6 @@ class HomeViewModel: ViewModel() {
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
-    private val _navigateToSelectedProperty = MutableLiveData<Product>()
-    val navigateToSelectedProperty: LiveData<Product>
-        get() = _navigateToSelectedProperty
     private val _topProperties = MutableLiveData<List<Product>>()
     val topProperties: LiveData<List<Product>>
         get() = _topProperties
@@ -72,19 +68,15 @@ class HomeViewModel: ViewModel() {
 
     }
 
-    fun displayPropertyDetails(product: Product) {
-        _navigateToSelectedProperty.value = product
-    }
-
-    fun displayPropertyDetailsComplete() {
-        _navigateToSelectedProperty.value = null
-    }
-
     fun getTopProducts(){
         val list = ArrayList<Product>()
         for (i in 0..4){
             list.add(_bestProperty.value!![i])
         }
         _topProperties.value = list
+    }
+
+    fun reLoading(){
+        getProperties()
     }
 }

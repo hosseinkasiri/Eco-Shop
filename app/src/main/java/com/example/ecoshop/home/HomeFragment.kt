@@ -41,41 +41,46 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.homeViewModel = viewModel
         bindRecyclerViews()
-        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                findNavController().navigate(HomeFragmentDirections.
-                actionHomeFragmentToDetailFragment(it))
-                viewModel.displayPropertyDetailsComplete()
-            }
-        })
-        viewModel.status.observe(viewLifecycleOwner, Observer {
-            if (it == ApiStatus.DONE) {
+        viewModel.status.observe(viewLifecycleOwner, Observer { apiStatus ->
+            if (apiStatus == ApiStatus.DONE) {
                 viewModel.getTopProducts()
                 autoScroll()
             }
+            if (apiStatus == ApiStatus.ERROR){
+                binding.reloading.visibility = View.VISIBLE
+            }else{
+                binding.reloading.visibility = View.GONE
+            }
         })
+        binding.reloading.setOnClickListener {
+            viewModel.reLoading()
+        }
         return binding.root
     }
 
     private fun bindRecyclerViews() {
         imageRecycler = binding.imageRecyclerView
-        binding.bestProductRecycler.adapter = ListProductAdapter(ListItemClickListener {
-            viewModel.displayPropertyDetails(it)
+        binding.bestProductRecycler.adapter = ListProductAdapter(ListItemClickListener { product ->
+            findNavController().navigate(HomeFragmentDirections.
+            actionHomeFragmentToDetailFragment(product))
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
-        binding.popularProductRecycler.adapter = ListProductAdapter(ListItemClickListener {
-            viewModel.displayPropertyDetails(it)
+        binding.popularProductRecycler.adapter = ListProductAdapter(ListItemClickListener { product ->
+            findNavController().navigate(HomeFragmentDirections.
+            actionHomeFragmentToDetailFragment(product))
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
-        binding.newProductRecycler.adapter = ListProductVerticalAdapter(ListItemClickListener {
-            viewModel.displayPropertyDetails(it)
+        binding.newProductRecycler.adapter = ListProductVerticalAdapter(ListItemClickListener { product ->
+            findNavController().navigate(HomeFragmentDirections.
+            actionHomeFragmentToDetailFragment(product))
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })
-        bannerAdapter = ProductBannerAdapter(ListItemClickListener {
-            viewModel.displayPropertyDetails(it)
+        bannerAdapter = ProductBannerAdapter(ListItemClickListener { product ->
+            findNavController().navigate(HomeFragmentDirections.
+            actionHomeFragmentToDetailFragment(product))
         },
             { old, new -> old.id == new.id },
             { old, new -> old == new })

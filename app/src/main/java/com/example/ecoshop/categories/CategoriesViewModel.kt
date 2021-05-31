@@ -26,9 +26,6 @@ class CategoriesViewModel: ViewModel() {
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
-    private val _navigateToSelectedProperty = MutableLiveData<ProductCategory>()
-    val navigateToSelectedProperty: LiveData<ProductCategory>
-        get() = _navigateToSelectedProperty
 
     init {
         getCategories()
@@ -54,11 +51,7 @@ class CategoriesViewModel: ViewModel() {
         }
     }
 
-    fun displayPropertyDetails(productCategory: ProductCategory) {
-        _navigateToSelectedProperty.value = productCategory
-    }
-
-    fun displayPropertyDetailsComplete() {
-        _navigateToSelectedProperty.value = null
+    fun reLoading(){
+        getCategories()
     }
 }

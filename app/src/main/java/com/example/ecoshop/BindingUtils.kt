@@ -103,7 +103,6 @@ fun bindProductTags(textView: TextView, tags: List<Tag>){
             tags[i].name + " | "
         else
             tags[i].name
-
     }
     textView.text = tag
 }

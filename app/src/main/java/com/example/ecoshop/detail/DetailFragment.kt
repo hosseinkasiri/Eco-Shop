@@ -61,11 +61,13 @@ class DetailFragment : Fragment() {
         viewModel.similarProducts.observe(viewLifecycleOwner, Observer {
             similarAdapter.submitList(it)
         })
-        circularIndicator.adapter = CircularIndicatorAdapter(ListItemClickListener {
-
-        }, product.images!!.size)
+        binding.reloading.setOnClickListener {
+            viewModel.reLoadingDetail()
+        }
+        circularIndicator.adapter = CircularIndicatorAdapter(product.images!!.size)
         imageRecycler.adapter = imageAdapter
         similarRecycler.adapter = similarAdapter
+
     }
 
     private fun handleSimilarError() {
@@ -74,19 +76,22 @@ class DetailFragment : Fragment() {
                 ApiStatus.LOADING -> {
                     binding.statusImageDetail.visibility = View.VISIBLE
                     binding.statusImageDetail.setImageResource(R.drawable.loading_animation)
+                    binding.reloading.visibility = View.GONE
                 }
                 ApiStatus.ERROR -> {
                     binding.statusImageDetail.visibility = View.VISIBLE
                     binding.statusImageDetail.setImageResource(R.drawable.ic_connection_error)
+                    binding.reloading.visibility = View.VISIBLE
                 }
                 ApiStatus.DONE -> {
                     binding.statusImageDetail.visibility = View.GONE
+                    binding.reloading.visibility = View.GONE
                 }
             }
         })
     }
 
-    fun setItemScrolling(){
+    private fun setItemScrolling(){
         imageRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
