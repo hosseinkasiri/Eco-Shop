@@ -22,4 +22,5 @@
     <string name="categories">دسته بندی :</string>
     <string name="similarProducts">محصولات مشابه</string>
     <string name="tryAgain">تلاش دوباره</string>
+    <string name="add_to_buy">افزودن به سبد خرید</string>
 </resources>
