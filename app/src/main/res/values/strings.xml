@@ -23,4 +23,9 @@
     <string name="similarProducts">محصولات مشابه</string>
     <string name="tryAgain">تلاش دوباره</string>
     <string name="add_to_buy">افزودن به سبد خرید</string>
+    <string name="shopping">سبد خرید</string>
+    <string name="ShoppingSummary">خلاصه خرید</string>
+    <string name="prices">قیمت کالاها</string>
+    <string name="salePrices">تخفیف کالاها</string>
+    <string name="TotalPurchase">جمع سبد خرید</string>
 </resources>

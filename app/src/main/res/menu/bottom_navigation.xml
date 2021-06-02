@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/navigation_buy"
-        android:icon="@drawable/ic_action_user"
-        android:title="@string/user"
+        android:icon="@drawable/ic_action_shopping"
+        android:title="@string/shopping"
         app:showAsAction="ifRoom" />
 
     <item
