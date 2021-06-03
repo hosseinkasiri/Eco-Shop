@@ -8,16 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import com.example.ecoshop.Product
 import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ImageAdapter
 import com.example.ecoshop.customViews.ListProductAdapter
-import com.example.ecoshop.customViews.CircularIndicatorAdapter
 import com.example.ecoshop.databinding.FragmentDetailBinding
 import com.example.ecoshop.home.ApiStatus
+import com.example.ecoshop.utils.LinePagerIndicatorDecoration
 import com.example.ecoshop.utils.ListItemClickListener
 
 class DetailFragment : Fragment() {
@@ -30,10 +29,11 @@ class DetailFragment : Fragment() {
     private lateinit var imageAdapter: ImageAdapter
     private lateinit var imageRecycler: RecyclerView
     private lateinit var similarRecycler: RecyclerView
-    private lateinit var circularIndicator: RecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentDetailBinding.inflate(layoutInflater)
         product = DetailFragmentArgs.fromBundle(requireArguments()).product
         detailViewModelFactory = DetailViewModelFactory(product, (activity)!!.application)
@@ -41,11 +41,16 @@ class DetailFragment : Fragment() {
         binding.detailViewModel = viewModel
         imageRecycler = binding.imageRecyclerView
         similarRecycler = binding.similarProductRecycler
-        circularIndicator = binding.selectedRecycler
         setAttributes()
         handleSimilarError()
-        setItemScrolling()
+        handleRecyclerPaging()
         return binding.root
+    }
+
+    private fun handleRecyclerPaging() {
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(imageRecycler)
+        imageRecycler.addItemDecoration(LinePagerIndicatorDecoration())
     }
 
     private fun setAttributes() {
@@ -64,10 +69,8 @@ class DetailFragment : Fragment() {
         binding.reloading.setOnClickListener {
             viewModel.reLoadingDetail()
         }
-        circularIndicator.adapter = CircularIndicatorAdapter(product.images!!.size)
         imageRecycler.adapter = imageAdapter
         similarRecycler.adapter = similarAdapter
-
     }
 
     private fun handleSimilarError() {
@@ -89,20 +92,5 @@ class DetailFragment : Fragment() {
                 }
             }
         })
-    }
-
-    private fun setItemScrolling(){
-        imageRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                circularIndicator.smoothScrollToPosition(imageAdapter.itemCount)
-            }
-        })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(imageRecycler)
     }
 }

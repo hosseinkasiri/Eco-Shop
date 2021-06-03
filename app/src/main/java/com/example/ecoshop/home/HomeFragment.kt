@@ -10,15 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
-import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.customViews.ProductBannerAdapter
 import com.example.ecoshop.databinding.FragmentHomeBinding
-import com.example.ecoshop.navigator.CustomNavigator
+import com.example.ecoshop.utils.LinePagerIndicatorDecoration
 import com.example.ecoshop.utils.ListItemClickListener
 
 class HomeFragment : Fragment() {
@@ -55,7 +53,14 @@ class HomeFragment : Fragment() {
         binding.reloading.setOnClickListener {
             viewModel.reLoading()
         }
+        handleRecyclerPaging()
         return binding.root
+    }
+
+    private fun handleRecyclerPaging() {
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(imageRecycler)
+        imageRecycler.addItemDecoration(LinePagerIndicatorDecoration())
     }
 
     private fun bindRecyclerViews() {
@@ -101,12 +106,6 @@ class HomeFragment : Fragment() {
             handler?.postDelayed(runnable, 5000)
         }
         handler?.postDelayed(runnable, 5000)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(imageRecycler)
     }
 
     override fun onDestroy() {

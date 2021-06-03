@@ -54,8 +54,8 @@ fun bindCategoryRecycler(recyclerView: RecyclerView, categories: List<ProductCat
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imageUrl: String?){
     Glide.with(imageView.context)
-            .load(imageUrl)
-            .into(imageView)
+        .load(imageUrl)
+        .into(imageView)
 }
 
 @BindingAdapter("setTextTextView")
