@@ -69,6 +69,9 @@ class DetailFragment : Fragment() {
         binding.reloading.setOnClickListener {
             viewModel.reLoadingDetail()
         }
+        binding.buyDetailButton.setOnClickListener {
+           viewModel.shopProduct()
+        }
         imageRecycler.adapter = imageAdapter
         similarRecycler.adapter = similarAdapter
     }

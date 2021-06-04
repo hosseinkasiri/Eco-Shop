@@ -5,9 +5,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.ecoshop.Product
 import com.example.ecoshop.home.ApiStatus
+import com.example.ecoshop.data.LocalShopBagRepository
+import com.example.ecoshop.data.ShopBagRepository
 import com.example.ecoshop.network.ProductRepository
 import com.example.ecoshop.network.ProductRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -21,6 +22,7 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val repository: ProductRepository = ProductRepositoryImpl()
+    private val shopBagRepository: ShopBagRepository
     private val _selectedProduct = MutableLiveData<Product>()
     val selectedProduct: LiveData<Product>
         get() = _selectedProduct
@@ -32,6 +34,7 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
         get() = _statusDetail
 
     init {
+        shopBagRepository = LocalShopBagRepository(application)
         _selectedProduct.value = product
         getSimilarProducts()
     }
@@ -60,6 +63,10 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
                 _statusDetail.value = ApiStatus.ERROR
             }
         }
+    }
+
+    fun shopProduct() {
+        _selectedProduct.value?.let { shopBagRepository.add(it) }
     }
 
     fun reLoadingDetail(){

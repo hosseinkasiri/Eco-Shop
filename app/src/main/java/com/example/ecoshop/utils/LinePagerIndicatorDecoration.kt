@@ -26,8 +26,6 @@ class LinePagerIndicatorDecoration : ItemDecoration() {
         val paddingBetweenItems = Math.max(0, itemCount - 1) * mIndicatorItemPadding
         val indicatorTotalWidth = totalLength + paddingBetweenItems
         val indicatorStartX = indicatorTotalWidth + 50f
-        println(indicatorStartX.toString() + "kir to dahan kesi ke mikhanad")
-
         val indicatorPosY = parent.height - mIndicatorHeight - 50f
         drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount)
         val layoutManager = parent.layoutManager as LinearLayoutManager?

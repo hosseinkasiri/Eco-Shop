@@ -13,9 +13,9 @@ interface ProductRepository {
 }
 
 class ProductRepositoryImpl: ProductRepository {
-    private  val BASE_URL = "https://woocommerce.maktabsharif.ir/wp-json/wc/v3/"
-    private  val CONSUMER_KEY = "ck_fcaf3ae3cc25408cfacf3a4706ce12017705ba81"
-    private  val CONSUMER_SECRET = "cs_aebe5b20c7df9f1d35eb9684bf5726b7a44c2f95"
+    private val BASE_URL = "https://woocommerce.maktabsharif.ir/wp-json/wc/v3/"
+    private val CONSUMER_KEY = "ck_fcaf3ae3cc25408cfacf3a4706ce12017705ba81"
+    private val CONSUMER_SECRET = "cs_aebe5b20c7df9f1d35eb9684bf5726b7a44c2f95"
 
     private val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
