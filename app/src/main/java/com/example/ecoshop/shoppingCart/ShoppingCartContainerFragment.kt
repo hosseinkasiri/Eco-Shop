@@ -1,4 +1,4 @@
-package com.example.ecoshop.buy
+package com.example.ecoshop.shoppingCart
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ecoshop.R
 
-class BuyContainerFragment : Fragment() {
+class ShoppingCartContainerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_buy_container, container, false)
+        return inflater.inflate(R.layout.fragment_shopping_cart_container, container, false)
     }
 }

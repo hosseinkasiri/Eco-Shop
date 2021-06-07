@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/buyFragment"
-        android:name="com.example.ecoshop.buy.BuyFragment"
+        android:name="com.example.ecoshop.shoppingCart.ShoppingCartFragment"
         android:label="fragment_buy"
-        tools:layout="@layout/fragment_buy" />
+        tools:layout="@layout/fragment_shopping_cart" />
 </navigation>

@@ -12,34 +12,121 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        android:layout_margin="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:padding="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_shopping"
+                    setTextTextView="@{product.name}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="end"
+                    tools:text="گوشی مبایل اپل مدل iphone 12 A2404 دو سیم کارت ظرفیت ۱۲۸ گیگابایت" />
+
+                <TextView
+                    android:id="@+id/categoryDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="end"
+                    setCategoryProduct="@{product.categories}" />
+
+                <TextView
+                    android:id="@+id/tagsDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"
+                    android:layout_gravity="end"
+                    android:textStyle="bold"
+                    setTags="@{product.tags}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/price"
+                        priceProduct="@{product.price}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="24dp"
+                        app:layout_constraintBottom_toTopOf="@+id/trash_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="5,000,000 تومان" />
+
+                    <RelativeLayout
+                        android:id="@+id/pathRelative"
+                        regularPriceVisibility="@{product.onSale}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/price"
+                        app:layout_constraintTop_toTopOf="@+id/price"
+                        app:layout_constraintBottom_toBottomOf="@+id/price"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:id="@+id/regularPriceDetail"
+                            priceProduct="@{product.regularPrice}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/regularPriceColor"
+                            tools:text="5,500,000" />
+
+                        <View
+                            android:layout_width="100dp"
+                            android:layout_height="1dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:background="@color/regularPriceColor" />
+                    </RelativeLayout>
+
+                    <ImageButton
+                        android:id="@+id/trash_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_action_trash"
+                        android:background="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/image_shopping"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/name_shopping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:textStyle="bold"
-                android:textColor="#303030"
-                app:layout_constraintEnd_toStartOf="@+id/image_shopping"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/image_shopping"
-                tools:text="گوشی مبایل اپل مدل iphone 12 A2404 دو سیم کارت ظرفیت ۱۲۸ گیگابایت" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_gravity="end"
+                imageUrl="@{product.images.get(0).src}"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>
