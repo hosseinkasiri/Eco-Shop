@@ -14,10 +14,22 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
     private val _shoppedProducts = MutableLiveData<List<Product>>()
     val shoppedProducts : LiveData<List<Product>>
         get() = _shoppedProducts
+    private val _totalDiscounts = MutableLiveData<String>()
+    val totalDiscounts : LiveData<String>
+        get() = _totalDiscounts
+    private val _totalPrises = MutableLiveData<String>()
+    val totalPrises : LiveData<String>
+        get() = _totalPrises
+    private val _totalShopped = MutableLiveData<String>()
+    val totalShopped : LiveData<String>
+        get() = _totalShopped
 
     init {
         shopBagRepository = LocalShopBagRepository(application)
         getShopped()
+        getTotalDiscounts()
+        getTotalPrises()
+        getTotalShopped()
     }
 
     fun getShopped(){
@@ -27,5 +39,28 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
     fun deleteProduct(product: Product){
         shopBagRepository.delete(product)
         getShopped()
+    }
+
+    private fun getTotalShopped(){
+        val shopped = Integer.parseInt(_totalPrises.value) - Integer.parseInt(_totalDiscounts.value)
+        _totalShopped.value = shopped.toString()
+    }
+
+    private fun getTotalDiscounts(){
+        var discounts = 0
+        for (element in _shoppedProducts.value!!){
+            if (element.onSale){
+                discounts += (Integer.parseInt(element.regularPrice) - Integer.parseInt(element.price))
+            }
+        }
+        _totalDiscounts.value = discounts.toString()
+    }
+
+    private fun getTotalPrises(){
+        var prises = 0
+        for (element in _shoppedProducts.value!!){
+            prises += Integer.parseInt(element.regularPrice)
+        }
+        _totalPrises.value = prises.toString()
     }
 }

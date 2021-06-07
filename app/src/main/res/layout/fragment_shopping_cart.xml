@@ -116,33 +116,36 @@
                             app:layout_constraintTop_toBottomOf="@+id/text3" />
 
                         <TextView
-                            android:id="@+id/prices_buy"
+                            android:id="@+id/totalPrises"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:textStyle="bold"
+                            priceProduct="@{viewModel.totalPrises}"
                             app:layout_constraintEnd_toStartOf="@+id/text2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/text2"
                             app:layout_constraintBottom_toBottomOf="@+id/text2" />
 
                         <TextView
-                            android:id="@+id/Discounts_buy"
+                            android:id="@+id/totalDiscounts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
+                            android:textColor="#D60B0B"
                             android:textStyle="bold"
+                            priceProduct="@{viewModel.totalDiscounts}"
                             app:layout_constraintEnd_toStartOf="@+id/text3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/text3"
                             app:layout_constraintBottom_toBottomOf="@+id/text3" />
 
                         <TextView
-                            android:id="@+id/boxPrice"
+                            android:id="@+id/totalShoppingCart"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:textStyle="bold"
+                            priceProduct="@{viewModel.totalShopped}"
                             app:layout_constraintEnd_toStartOf="@+id/text4"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/text4"
