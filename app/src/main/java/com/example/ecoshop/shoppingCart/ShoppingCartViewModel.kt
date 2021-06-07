@@ -23,4 +23,9 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
     fun getShopped(){
         _shoppedProducts.value = shopBagRepository.getProductList()
     }
+
+    fun deleteProduct(product: Product){
+        shopBagRepository.delete(product)
+        getShopped()
+    }
 }

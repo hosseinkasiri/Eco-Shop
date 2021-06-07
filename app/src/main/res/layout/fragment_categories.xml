@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -30,7 +29,6 @@
                 android:background="#eeeeee"
                 app:menu="@menu/toolbar"/>
         </androidx.cardview.widget.CardView>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoriesRecycler"
@@ -67,5 +65,5 @@
             app:layout_constraintStart_toStartOf="@+id/status_image"
             app:layout_constraintTop_toBottomOf="@+id/status_image" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

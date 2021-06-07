@@ -156,10 +156,3 @@ fun bindStarRating(imageView: ImageView, averageRating: Double, starNumber: Int)
 fun bindRegularPrice(relativeLayout: RelativeLayout, onSale: Boolean){
     if (!onSale) relativeLayout.visibility = View.GONE
 }
-
-@BindingAdapter("shoppingCartListData")
-fun bindShoppingRecycler(recyclerView: RecyclerView, list: List<Product>?){
-    val adapter = recyclerView.adapter as ShoppingAdapter
-    adapter.submitList(list)
-    recyclerView.adapter = adapter
-}

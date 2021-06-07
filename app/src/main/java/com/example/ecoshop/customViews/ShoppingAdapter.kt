@@ -20,23 +20,24 @@ class ShoppingAdapter(private val clickListener: ListItemClickListener<Product>,
 
     override fun onBindViewHolder(holder: ShoppingHolder, position: Int) {
         val product = getItem(position)
-        holder.bind(product)
+        holder.bind(product, clickListener)
     }
 
     class ShoppingHolder private constructor(val binding: ItemShoppingBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: Product){
+        fun bind(product: Product, clickListener: ListItemClickListener<Product>){
             binding.product = product
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
-            companion object {
-                fun from(parent: ViewGroup): ShoppingHolder{
-                    val layoutInflater = LayoutInflater.from(parent.context)
-                    val binding = ItemShoppingBinding.inflate(layoutInflater, parent, false)
-                    return ShoppingHolder(binding)
-                }
+        companion object {
+            fun from(parent: ViewGroup): ShoppingHolder{
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ItemShoppingBinding.inflate(layoutInflater, parent, false)
+                return ShoppingHolder(binding)
             }
+        }
     }
 }
