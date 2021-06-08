@@ -27,9 +27,9 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
     init {
         shopBagRepository = LocalShopBagRepository(application)
         getShopped()
-        getTotalDiscounts()
-        getTotalPrises()
-        getTotalShopped()
+        getDiscounts()
+        getPrises()
+        getTotalShopping()
     }
 
     fun getShopped(){
@@ -41,12 +41,12 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
         getShopped()
     }
 
-    private fun getTotalShopped(){
+    fun getTotalShopping(){
         val shopped = Integer.parseInt(_totalPrises.value) - Integer.parseInt(_totalDiscounts.value)
         _totalShopped.value = shopped.toString()
     }
 
-    private fun getTotalDiscounts(){
+    fun getDiscounts(){
         var discounts = 0
         for (element in _shoppedProducts.value!!){
             if (element.onSale){
@@ -56,7 +56,7 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
         _totalDiscounts.value = discounts.toString()
     }
 
-    private fun getTotalPrises(){
+    fun getPrises(){
         var prises = 0
         for (element in _shoppedProducts.value!!){
             prises += Integer.parseInt(element.regularPrice)
