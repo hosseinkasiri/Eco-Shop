@@ -69,7 +69,7 @@ fun bindPrice(textView: TextView, price: String?){
     val charArray = price!!.toCharArray()
     var number = 1
     for (i in charArray.size-1 downTo 0){
-        if (number%3 == 0 && number != 1){
+        if (number%3 == 0 && number != 1 && number!=charArray.size){
             array.add(charArray[i])
             array.add(',')
             number++

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ecoshop.customViews.ShoppingAdapter
@@ -28,14 +29,14 @@ class ShoppingCartFragment : Fragment() {
         binding.viewModel = shoppingCartViewModel
         updateData()
         bindRecycler()
-        shoppingCartViewModel.totalDiscounts.observe(viewLifecycleOwner, Observer {
-            binding.totalDiscounts.text = it
+        shoppingCartViewModel.totalDiscounts.observe(viewLifecycleOwner, Observer { discounts ->
+            setPrices(binding.totalDiscounts, discounts)
         })
-        shoppingCartViewModel.totalShopped.observe(viewLifecycleOwner, Observer {
-            binding.totalShoppingCart.text = it
+        shoppingCartViewModel.totalShopped.observe(viewLifecycleOwner, Observer { prises ->
+            setPrices(binding.totalShoppingCart, prises)
         })
-        shoppingCartViewModel.totalPrises.observe(viewLifecycleOwner, Observer {
-            binding.totalPrises.text = it
+        shoppingCartViewModel.totalPrises.observe(viewLifecycleOwner, Observer { prices ->
+            setPrices(binding.totalPrises, prices)
         })
         return binding.root
     }
@@ -45,6 +46,7 @@ class ShoppingCartFragment : Fragment() {
         shoppingCartViewModel.getDiscounts()
         shoppingCartViewModel.getPrises()
         shoppingCartViewModel.getTotalShopping()
+        shoppingCartViewModel.fillShoppingItem()
     }
 
     private fun bindRecycler() {
@@ -54,14 +56,32 @@ class ShoppingCartFragment : Fragment() {
                 updateData()
                 notifyRecycler()
             },
-            { old, new -> old.id == new.id },
+            { old, new -> old.product == new.product},
             { old, new -> old == new })
-        shoppingAdapter.submitList(shoppingCartViewModel.shoppedProducts.value)
+        shoppingAdapter.submitList(shoppingCartViewModel.shoppingItems.value)
         binding.shoppingRecycler.adapter = shoppingAdapter
     }
 
     private fun notifyRecycler(){
-        shoppingAdapter.submitList(shoppingCartViewModel.shoppedProducts.value)
+        shoppingAdapter.submitList(shoppingCartViewModel.shoppingItems.value)
         shoppingAdapter.notifyDataSetChanged()
+    }
+
+    private fun setPrices(textView: TextView, price: String?){
+        var array = ArrayList<Char>()
+        val charArray = price!!.toCharArray()
+        var number = 1
+        for (i in charArray.size-1 downTo 0){
+            if (number%3 == 0 && number != 1 && number!=charArray.size){
+                array.add(charArray[i])
+                array.add(',')
+                number++
+                continue
+            }
+            array.add(charArray[i])
+            number++
+        }
+        array.reverse()
+        textView.text = array.joinToString("") + " " + "تومان"
     }
 }

@@ -7,13 +7,12 @@ import androidx.lifecycle.ViewModel
 import com.example.ecoshop.Product
 import com.example.ecoshop.data.LocalShopBagRepository
 import com.example.ecoshop.data.ShopBagRepository
+import com.example.ecoshop.model.ShoppingItem
 
 class ShoppingCartViewModel (application: Application): ViewModel() {
 
     private val shopBagRepository: ShopBagRepository
-    private val _shoppedProducts = MutableLiveData<List<Product>>()
-    val shoppedProducts : LiveData<List<Product>>
-        get() = _shoppedProducts
+    private val shoppedProducts = MutableLiveData<List<Product>>()
     private val _totalDiscounts = MutableLiveData<String>()
     val totalDiscounts : LiveData<String>
         get() = _totalDiscounts
@@ -23,6 +22,9 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
     private val _totalShopped = MutableLiveData<String>()
     val totalShopped : LiveData<String>
         get() = _totalShopped
+    private val _shoppingItems = MutableLiveData<List<ShoppingItem>>()
+    val shoppingItems : LiveData<List<ShoppingItem>>
+        get() = _shoppingItems
 
     init {
         shopBagRepository = LocalShopBagRepository(application)
@@ -30,10 +32,11 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
         getDiscounts()
         getPrises()
         getTotalShopping()
+        fillShoppingItem()
     }
 
     fun getShopped(){
-        _shoppedProducts.value = shopBagRepository.getProductList()
+        shoppedProducts.value = shopBagRepository.getProductList()
     }
 
     fun deleteProduct(product: Product){
@@ -48,7 +51,7 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
 
     fun getDiscounts(){
         var discounts = 0
-        for (element in _shoppedProducts.value!!){
+        for (element in shoppedProducts.value!!){
             if (element.onSale){
                 discounts += (Integer.parseInt(element.regularPrice) - Integer.parseInt(element.price))
             }
@@ -58,9 +61,15 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
 
     fun getPrises(){
         var prises = 0
-        for (element in _shoppedProducts.value!!){
+        for (element in shoppedProducts.value!!){
             prises += Integer.parseInt(element.regularPrice)
         }
         _totalPrises.value = prises.toString()
+    }
+
+    fun fillShoppingItem(){
+        val hMap = shoppedProducts.value?.groupingBy { it.id }?.eachCount()
+        _shoppingItems.value = hMap?.entries?.
+        map{ ShoppingItem(shoppedProducts.value!!.last {product -> product.id == it.key}, it.value) } ?: ArrayList()
     }
 }

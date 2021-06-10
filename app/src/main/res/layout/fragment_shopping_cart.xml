@@ -132,10 +132,9 @@
                             android:layout_height="wrap_content"
                             android:textColor="#D60B0B"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/text3"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/text3"
-                            app:layout_constraintBottom_toBottomOf="@+id/text3" />
+                            app:layout_constraintBottom_toBottomOf="@+id/text3"
+                            app:layout_constraintEnd_toEndOf="@+id/totalPrises"
+                            app:layout_constraintTop_toTopOf="@+id/text3" />
 
                         <TextView
                             android:id="@+id/totalShoppingCart"
@@ -143,10 +142,9 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/text4"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/text4"
-                            app:layout_constraintBottom_toBottomOf="@+id/text4" />
+                            app:layout_constraintBottom_toBottomOf="@+id/text4"
+                            app:layout_constraintEnd_toEndOf="@+id/totalDiscounts"
+                            app:layout_constraintTop_toTopOf="@+id/text4" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
