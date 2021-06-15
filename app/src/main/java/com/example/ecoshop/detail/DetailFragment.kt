@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ImageAdapter
 import com.example.ecoshop.customViews.ListProductAdapter
@@ -71,6 +72,7 @@ class DetailFragment : Fragment() {
         }
         binding.buyDetailButton.setOnClickListener {
            viewModel.shopProduct()
+            Toast.makeText(context, "به سبد خرید افزوده شد", Toast.LENGTH_SHORT).show()
         }
         imageRecycler.adapter = imageAdapter
         similarRecycler.adapter = similarAdapter

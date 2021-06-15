@@ -11,16 +11,23 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detail" />
+        <action
+            android:id="@+id/action_home_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/detail"
         android:name="com.example.ecoshop.detail.DetailFragment"
         android:label="DetailFragment" >
-        <argument
-            android:name="product"
-            app:argType="com.example.ecoshop.Product" />
         <action
             android:id="@+id/action_detail_self"
             app:destination="@id/detail" />
+        <argument
+            android:name="product"
+            app:argType="com.example.ecoshop.model.Product" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.ecoshop.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

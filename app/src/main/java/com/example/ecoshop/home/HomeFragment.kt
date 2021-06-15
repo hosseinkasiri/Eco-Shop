@@ -6,12 +6,14 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ecoshop.R
 import com.example.ecoshop.customViews.ListProductAdapter
 import com.example.ecoshop.customViews.ListProductVerticalAdapter
 import com.example.ecoshop.customViews.ProductBannerAdapter
@@ -54,7 +56,14 @@ class HomeFragment : Fragment() {
             viewModel.reLoading()
         }
         handleRecyclerPaging()
+        handleToolbar()
         return binding.root
+    }
+
+    private fun handleToolbar() {
+        binding.toolbar.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeToSearchFragment())
+        }
     }
 
     private fun handleRecyclerPaging() {

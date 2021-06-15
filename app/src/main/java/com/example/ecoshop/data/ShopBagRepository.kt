@@ -2,7 +2,7 @@ package com.example.ecoshop.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

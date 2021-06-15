@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.databinding.ItemShoppingBinding
 import com.example.ecoshop.model.ShoppingItem
 import com.example.ecoshop.utils.ListDiffCallBack

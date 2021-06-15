@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.network.ProductRepository
@@ -23,14 +23,11 @@ class DetailCategoryViewModel(productCategory: ProductCategory, application: App
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val repository: ProductRepository = ProductRepositoryImpl()
     private val _productCategory = MutableLiveData<ProductCategory>()
-    val productCategory: LiveData<ProductCategory>
-        get() = _productCategory
+    val productCategory: LiveData<ProductCategory> get() = _productCategory
     private val _products = MutableLiveData<List<Product>>()
-    val products: LiveData<List<Product>>
-        get() = _products
+    val products: LiveData<List<Product>> get() = _products
     private val _status = MutableLiveData<ApiStatus>()
-    val status: LiveData<ApiStatus>
-        get() = _status
+    val status: LiveData<ApiStatus> get() = _status
 
     init {
         _productCategory.value = productCategory
@@ -45,7 +42,7 @@ class DetailCategoryViewModel(productCategory: ProductCategory, application: App
     private fun getProducts(){
         coroutineScope.launch {
             val getProductDeferred = repository.getProducts().
-            getProductsCategory(_productCategory.value!!.id)
+            getProductsCategoryAsync(_productCategory.value!!.id)
             try {
                 _status.value = ApiStatus.LOADING
                 val listResult = getProductDeferred.await()

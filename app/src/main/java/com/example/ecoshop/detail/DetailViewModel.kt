@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.data.LocalShopBagRepository
 import com.example.ecoshop.data.ShopBagRepository
@@ -24,14 +24,11 @@ class DetailViewModel(product: Product, application: Application): AndroidViewMo
     private val repository: ProductRepository = ProductRepositoryImpl()
     private val shopBagRepository: ShopBagRepository
     private val _selectedProduct = MutableLiveData<Product>()
-    val selectedProduct: LiveData<Product>
-        get() = _selectedProduct
+    val selectedProduct: LiveData<Product> get() = _selectedProduct
     private val _similarProducts = MutableLiveData<List<Product>>()
-    val similarProducts: LiveData<List<Product>>
-        get() = _similarProducts
+    val similarProducts: LiveData<List<Product>> get() = _similarProducts
     private val _statusDetail = MutableLiveData<ApiStatus>()
-    val statusDetail: LiveData<ApiStatus>
-        get() = _statusDetail
+    val statusDetail: LiveData<ApiStatus> get() = _statusDetail
 
     init {
         shopBagRepository = LocalShopBagRepository(application)

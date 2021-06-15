@@ -27,11 +27,11 @@
         android:id="@+id/detailFragment2"
         android:name="com.example.ecoshop.detail.DetailFragment"
         android:label="DetailFragment" >
-        <argument
-            android:name="product"
-            app:argType="com.example.ecoshop.Product" />
         <action
             android:id="@+id/action_detail_self"
             app:destination="@id/detailFragment2" />
+        <argument
+            android:name="product"
+            app:argType="com.example.ecoshop.model.Product" />
     </fragment>
 </navigation>

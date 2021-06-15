@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.data.LocalShopBagRepository
 import com.example.ecoshop.data.ShopBagRepository
 import com.example.ecoshop.model.ShoppingItem
@@ -14,17 +14,13 @@ class ShoppingCartViewModel (application: Application): ViewModel() {
     private val shopBagRepository: ShopBagRepository
     private val shoppedProducts = MutableLiveData<List<Product>>()
     private val _totalDiscounts = MutableLiveData<String>()
-    val totalDiscounts : LiveData<String>
-        get() = _totalDiscounts
+    val totalDiscounts : LiveData<String> get() = _totalDiscounts
     private val _totalPrises = MutableLiveData<String>()
-    val totalPrises : LiveData<String>
-        get() = _totalPrises
+    val totalPrises : LiveData<String> get() = _totalPrises
     private val _totalShopped = MutableLiveData<String>()
-    val totalShopped : LiveData<String>
-        get() = _totalShopped
+    val totalShopped : LiveData<String> get() = _totalShopped
     private val _shoppingItems = MutableLiveData<List<ShoppingItem>>()
-    val shoppingItems : LiveData<List<ShoppingItem>>
-        get() = _shoppingItems
+    val shoppingItems : LiveData<List<ShoppingItem>> get() = _shoppingItems
 
     init {
         shopBagRepository = LocalShopBagRepository(application)

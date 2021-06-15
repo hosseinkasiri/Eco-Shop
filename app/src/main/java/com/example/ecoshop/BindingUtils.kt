@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.ecoshop.customViews.*
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.Image
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.model.Tag
 

@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ecoshop.Product
 import com.example.ecoshop.home.ApiStatus
 import com.example.ecoshop.model.ProductCategory
 import com.example.ecoshop.network.ProductRepository
@@ -21,11 +20,9 @@ class CategoriesViewModel: ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val repository: ProductRepository = ProductRepositoryImpl()
     private val _categories = MutableLiveData<List<ProductCategory>>()
-    val categories: LiveData<List<ProductCategory>>
-        get() = _categories
+    val categories: LiveData<List<ProductCategory>> get() = _categories
     private val _status = MutableLiveData<ApiStatus>()
-    val status: LiveData<ApiStatus>
-        get() = _status
+    val status: LiveData<ApiStatus> get() = _status
 
     init {
         getCategories()

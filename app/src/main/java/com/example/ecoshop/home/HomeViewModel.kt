@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ecoshop.Product
+import com.example.ecoshop.model.Product
 import com.example.ecoshop.network.ProductRepository
 import com.example.ecoshop.network.ProductRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -20,21 +20,17 @@ class HomeViewModel: ViewModel() {
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val repository: ProductRepository = ProductRepositoryImpl()
+
     private val _property = MutableLiveData<List<Product>>()
-    val property: LiveData<List<Product>>
-        get() = _property
+    val property: LiveData<List<Product>> get() = _property
     private val _bestProperty = MutableLiveData<List<Product>>()
-    val bestProperty: LiveData<List<Product>>
-        get() = _bestProperty
+    val bestProperty: LiveData<List<Product>> get() = _bestProperty
     private val _popularProperty = MutableLiveData<List<Product>>()
-    val popularProperty: LiveData<List<Product>>
-        get() = _popularProperty
+    val popularProperty: LiveData<List<Product>> get() = _popularProperty
     private val _status = MutableLiveData<ApiStatus>()
-    val status: LiveData<ApiStatus>
-        get() = _status
+    val status: LiveData<ApiStatus> get() = _status
     private val _topProperties = MutableLiveData<List<Product>>()
-    val topProperties: LiveData<List<Product>>
-        get() = _topProperties
+    val topProperties: LiveData<List<Product>> get() = _topProperties
 
     init {
         getProperties()
